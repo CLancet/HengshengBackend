@@ -5,11 +5,11 @@ import tongji.product.api.pojo.ProductDTO;
 
 @CloudService(validationNull = true, validation = true)
 public interface ProductService {
-    @CloudFunction("333000")
+    @CloudFunction("333001")
     String createProduct(ProductDTO Product);
 
-    @CloudFunction("333001")
-    ProductDTO getProduct(String userId);
+    @CloudFunction("333000")
+    ProductDTO getProduct(String fundNumber);
 
     @CloudFunction("333002")
     String modifyProduct(ProductDTO Product);

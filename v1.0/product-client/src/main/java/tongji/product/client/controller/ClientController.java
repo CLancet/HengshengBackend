@@ -1,13 +1,12 @@
 package tongji.product.client.controller;
 
 import com.hundsun.jrescloud.rpc.annotation.CloudReference;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.omg.CORBA.PUBLIC_MEMBER;
+import org.springframework.web.bind.annotation.*;
 import tongji.product.api.ProductService;
 import tongji.product.api.pojo.ProductDTO;
 
+@RestController
 public class ClientController {
 
     @CloudReference
@@ -26,13 +25,18 @@ public class ClientController {
         product.setFundRisk(fundRisk);
         return productService.createProduct(product);
     }
-    @RequestMapping(value = "/getProduct", method = RequestMethod.GET)
+    @RequestMapping(path = "/getProduct", method = RequestMethod.GET)
     public ProductDTO getProduct(@RequestParam(value = "fund_number") String fundNumber){
         return productService.getProduct(fundNumber);
     }
 
-    @RequestMapping(value = "/modifyProduct", method = RequestMethod.POST)
-    public String modifyProduct(@RequestBody ProductDTO product){
-        return productService.modifyProduct(product);
-    }
+//    @RequestMapping(value = "/modifyProduct", method = RequestMethod.POST)
+//    public String modifyProduct(@RequestBody ProductDTO product){
+//        return productService.modifyProduct(product);
+//    }
+
+//    @RequestMapping(value = "/sayHello",method = RequestMethod.GET)
+//    public String sayHello(){
+//        return "hello postman";
+//    }
 }
