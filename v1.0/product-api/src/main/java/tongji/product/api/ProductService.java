@@ -11,6 +11,6 @@ public interface ProductService {
     @CloudFunction("333000")
     ProductDTO getProduct(String fundNumber);
 
-    @CloudFunction("333002")
-    String modifyProduct(ProductDTO Product);
+//    @CloudFunction("333002")
+//    String modifyProduct(ProductDTO Product);
 }

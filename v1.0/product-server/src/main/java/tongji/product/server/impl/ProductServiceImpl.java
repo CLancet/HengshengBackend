@@ -28,13 +28,13 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.getProduct(fundNumber);
     }
 
-    public String modifyProduct(ProductDTO Product) {
-        ProductDTO existProduct = productMapper.getProduct(Product.getFundNumber());
-        if(null == existProduct){
-            //productMapper.createProduct(Product);
-            return Product.getFundNumber();
-        }
-        productMapper.updateProduct(Product);
-        return Product.getFundNumber();
-    }
+//    public String modifyProduct(ProductDTO Product) {
+//        ProductDTO existProduct = productMapper.getProduct(Product.getFundNumber());
+//        if(null == existProduct){
+//            //productMapper.createProduct(Product);
+//            return Product.getFundNumber();
+//        }
+//        productMapper.updateProduct(Product);
+//        return Product.getFundNumber();
+//    }
 }
