@@ -1,3 +1,4 @@
 
 .idea/*
 product-server/src/main/resources/application.properties
+v1.0/product-server/target/classes/application.properties
