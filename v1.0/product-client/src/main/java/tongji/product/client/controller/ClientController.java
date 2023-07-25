@@ -177,5 +177,4 @@ public class ClientController {
         return dailyValueService.getDailyValue(fundNumber/*, date*/);
 //>>>>>>> Stashed changes
     }
-
 }
