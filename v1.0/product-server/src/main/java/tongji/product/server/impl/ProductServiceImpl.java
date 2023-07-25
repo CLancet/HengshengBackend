@@ -19,8 +19,7 @@ public class ProductServiceImpl implements ProductService {
             productMapper.createProduct(Product);
             return Product.getFundNumber();
         }
-        productMapper.updateProduct(Product);
-        return Product.getFundNumber();
+        throw new IllegalArgumentException("已存在相同的证件号的投资者");
     }
 
     public ProductDTO getProduct(String fundNumber) {
