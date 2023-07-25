@@ -112,7 +112,6 @@ public class ClientController {
         card.setCerNumber(cerNumber);
         return bankCardService.modifyBankCard(card);
     }
-//=======
     @CloudReference
     private InvesterService investerService;
 
@@ -178,3 +177,5 @@ public class ClientController {
 //>>>>>>> Stashed changes
     }
 }
+
+// 这是一个测试
