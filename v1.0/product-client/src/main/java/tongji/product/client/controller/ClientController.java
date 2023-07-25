@@ -104,13 +104,14 @@ public class ClientController {
     public String modifyBankCard(@RequestParam(value = "card_number") String cardNumber,
                                  @RequestParam(value = "cer_number") String cerNumber,
                                  @RequestParam(value = "bank_name") String bankName,
-                                 @RequestParam(value = "balance") float balance){
+                                 @RequestParam(value = "balance") float balance) {
         BankCardDTO card = new BankCardDTO();
         card.setBalance(balance);
         card.setBankName(bankName);
         card.setCardNumber(cardNumber);
         card.setCerNumber(cerNumber);
         return bankCardService.modifyBankCard(card);
+    }
 =======
     @CloudReference
     private InvesterService investerService;
