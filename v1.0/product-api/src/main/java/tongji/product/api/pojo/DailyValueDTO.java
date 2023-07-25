@@ -1,10 +1,14 @@
 package tongji.product.api.pojo;
 
-import java.sql.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
 
 public class DailyValueDTO {
     private String fundNumber;
     private float value;
+
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd",timezone="GMT+8")
     private Date date;
 
 //    public DailyValueDTO(String fundNumber, float value, Date date) {

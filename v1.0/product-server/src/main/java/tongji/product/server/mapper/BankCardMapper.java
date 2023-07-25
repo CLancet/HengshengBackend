@@ -3,7 +3,6 @@ package tongji.product.server.mapper;
 
 import org.apache.ibatis.annotations.*;
 import tongji.product.api.pojo.BankCardDTO;
-import tongji.product.api.pojo.ProductDTO;
 
 import java.util.List;
 
