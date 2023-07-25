@@ -6,14 +6,14 @@ import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.apache.kafka.common.protocol.types.Field;
 import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.web.bind.annotation.*;
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
 import tongji.product.api.BankCardService;
 import tongji.product.api.ProductService;
 import tongji.product.api.pojo.BankCardDTO;
 import tongji.product.api.pojo.ProductDTO;
 
 import java.util.List;
-=======
+//=======
 import tongji.product.api.DailyValueService;
 import tongji.product.api.InvesterService;
 import tongji.product.api.ProductService;
@@ -23,7 +23,7 @@ import tongji.product.api.pojo.ProductDTO;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
 
 @RestController
 public class ClientController {
@@ -62,7 +62,7 @@ public class ClientController {
 //        return "hello postman";
 //    }
 
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
     @RequestMapping(path = "/getBankCard/all", method = RequestMethod.GET)
     public List<BankCardDTO> getBankCard(@RequestParam(value = "cer_number") String cerNumber){
         return bankCardService.getBankCard(cerNumber);
@@ -112,7 +112,6 @@ public class ClientController {
         card.setCerNumber(cerNumber);
         return bankCardService.modifyBankCard(card);
     }
-=======
     @CloudReference
     private InvesterService investerService;
 
@@ -175,7 +174,7 @@ public class ClientController {
     public DailyValueDTO getDailyValue(@RequestParam(value = "fund_number") String fundNumber
                                        /*@RequestParam(value = "date") Date date*/){
         return dailyValueService.getDailyValue(fundNumber/*, date*/);
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
     }
 
 }

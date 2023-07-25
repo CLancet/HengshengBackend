@@ -11,11 +11,11 @@ public interface ProductService {
     @CloudFunction("0104")
     ProductDTO getProduct(String fundNumber);
 
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
 //    @CloudFunction("333002")
 //    String modifyProduct(ProductDTO Product);
-=======
+//=======
     @CloudFunction("0103")
     String modifyProduct(ProductDTO Product);
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
 }
