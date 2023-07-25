@@ -1,10 +1,13 @@
 package tongji.product.api.pojo;
 
+import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
+
 import java.sql.Date;
 
 public class DailyValueDTO {
     private String fundNumber;
-    private float value;
+    @NotBlank
+    private Float value;
     private Date date;
 
 //    public DailyValueDTO(String fundNumber, float value, Date date) {
@@ -21,7 +24,7 @@ public class DailyValueDTO {
         this.fundNumber = fundNumber;
     }
 
-    public float getValue() {
+    public Float getValue() {
         return value;
     }
 
