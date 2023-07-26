@@ -9,6 +9,7 @@ import tongji.product.api.pojo.DailyValueDTO;
 import tongji.product.server.mapper.DailyValueMapper;
 
 import java.util.Date;
+import java.util.List;
 
 @CloudComponent
 public class DailyValueServiceImpl implements DailyValueService {
@@ -17,8 +18,8 @@ public class DailyValueServiceImpl implements DailyValueService {
     private DailyValueMapper dailyValueMapper;
 
     public String createDailyValue(DailyValueDTO dailyValue){
-        DailyValueDTO existDailyValue = dailyValueMapper.getDailyValue(dailyValue.getFundNumber(), dailyValue.getFundDate());
-        if(null == existDailyValue){
+        DailyValueDTO existDailyValue = dailyValueMapper.getOneDailyValue(dailyValue.getFundNumber(), dailyValue.getDate());
+        if(existDailyValue == null){
             dailyValueMapper.createDailyValue(dailyValue);
             return dailyValue.getFundNumber();
         }
@@ -26,15 +27,22 @@ public class DailyValueServiceImpl implements DailyValueService {
     }
 
     public String updateDailyValue(DailyValueDTO dailyValue){
-        DailyValueDTO existDailyValue = dailyValueMapper.getDailyValue(dailyValue.getFundNumber(), dailyValue.getFundDate());
-        if(null == existDailyValue){ throw new IllegalArgumentException("不存在相同的基金代码和日期的日净值"); }
+        DailyValueDTO existDailyValue = dailyValueMapper.getOneDailyValue(dailyValue.getFundNumber(), dailyValue.getDate());
+        if(existDailyValue == null){ throw new IllegalArgumentException("不存在相同的基金代码和日期的日净值"); }
         dailyValueMapper.updateDailyValue(dailyValue);
         return dailyValue.getFundNumber();
     }
 
-    public DailyValueDTO getDailyValue(String fundNumber, Date fundDate){
+    public List<DailyValueDTO> getDailyValue(String fundNumber/*, Date date*/){
+        Assert.hasLength(fundNumber, "缺少查询的基金代码");
+        /*Assert.hasLength(String.valueOf(date), "缺少查询的日期");*/
+        return dailyValueMapper.getDailyValue(fundNumber/*, date*/);
+    }
+
+    public DailyValueDTO getOneDailyValue(String fundNumber, Date fundDate) {
         Assert.hasLength(fundNumber, "缺少查询的基金代码");
         Assert.hasLength(String.valueOf(fundDate), "缺少查询的日期");
-        return dailyValueMapper.getDailyValue(fundNumber,fundDate); }
+        return dailyValueMapper.getOneDailyValue(fundNumber, fundDate);
+    }
 
 }

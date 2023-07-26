@@ -127,6 +127,7 @@ public class ClientController {
         return investerService.createInvester(invester);
 
     }
+
     @RequestMapping(path = "/getInvester", method = RequestMethod.GET)
     public InvesterDTO getInvester(@RequestParam(value = "cer_number")String cerNumber){
         return investerService.getInvester(cerNumber);
@@ -168,9 +169,10 @@ public class ClientController {
     }
 
     @RequestMapping(path = "/getDailyValue", method = RequestMethod.GET)
-    public DailyValueDTO getDailyValue(@RequestParam(value = "fund_number") String fundNumber,
-                                       @RequestParam(value = "fund_date") Date fundDate){
-        return dailyValueService.getDailyValue(fundNumber,fundDate);
+    public List<DailyValueDTO> getDailyValue(@RequestParam(value = "fund_number") String fundNumber
+                                       /*@RequestParam(value = "date") Date date*/){
+        return dailyValueService.getDailyValue(fundNumber/*, date*/);
+//>>>>>>> Stashed changes
     }
 
 }
