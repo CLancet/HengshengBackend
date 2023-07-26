@@ -5,7 +5,9 @@ import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBl
 
 import java.util.Date;
 
-public class CardStatementDTO {
+public class
+
+CardStatementDTO {
     @NotBlank
     private String cardNumber;
     @NotBlank

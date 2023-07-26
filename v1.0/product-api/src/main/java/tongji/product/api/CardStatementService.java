@@ -10,7 +10,7 @@ import java.util.List;
 @CloudService(validationNull = true, validation = true)
 public interface CardStatementService {
     @CloudFunction("99901")
-    String createCardStatement(CardStatementDTO cardStatementDTO);
+    String createCardStatement(CardStatementDTO cardStatement);
 
     @CloudFunction("99902")
     List<CardStatementDTO> getCardStatementViaFund(String cardNumber, String fundNumber);
