@@ -6,7 +6,8 @@ import com.hundsun.jrescloud.rpc.annotation.CloudFunction;
 import com.hundsun.jrescloud.rpc.annotation.CloudService;
 import tongji.product.api.pojo.DailyValueDTO;
 
-import java.sql.Date;
+import java.util.Date;
+
 
 @CloudService(validationNull = true, validation = true)
 public interface DailyValueService {
@@ -18,7 +19,7 @@ public interface DailyValueService {
     String updateDailyValue(DailyValueDTO dailyValue);
 
     @CloudFunction("05011")
-    DailyValueDTO getDailyValue(String fundNumber/*, Date date*/);
+    DailyValueDTO getDailyValue(String fundNumber, Date fundDate);
 
 
 }

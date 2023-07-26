@@ -8,7 +8,7 @@ import tongji.product.api.DailyValueService;
 import tongji.product.api.pojo.DailyValueDTO;
 import tongji.product.server.mapper.DailyValueMapper;
 
-import java.sql.Date;
+import java.util.Date;
 
 @CloudComponent
 public class DailyValueServiceImpl implements DailyValueService {
@@ -17,7 +17,7 @@ public class DailyValueServiceImpl implements DailyValueService {
     private DailyValueMapper dailyValueMapper;
 
     public String createDailyValue(DailyValueDTO dailyValue){
-        DailyValueDTO existDailyValue = dailyValueMapper.getDailyValue(dailyValue.getFundNumber()/*, dailyValue.getDate()*/);
+        DailyValueDTO existDailyValue = dailyValueMapper.getDailyValue(dailyValue.getFundNumber(), dailyValue.getFundDate());
         if(null == existDailyValue){
             dailyValueMapper.createDailyValue(dailyValue);
             return dailyValue.getFundNumber();
@@ -26,15 +26,15 @@ public class DailyValueServiceImpl implements DailyValueService {
     }
 
     public String updateDailyValue(DailyValueDTO dailyValue){
-        DailyValueDTO existDailyValue = dailyValueMapper.getDailyValue(dailyValue.getFundNumber()/*, dailyValue.getDate()*/);
+        DailyValueDTO existDailyValue = dailyValueMapper.getDailyValue(dailyValue.getFundNumber(), dailyValue.getFundDate());
         if(null == existDailyValue){ throw new IllegalArgumentException("不存在相同的基金代码和日期的日净值"); }
         dailyValueMapper.updateDailyValue(dailyValue);
         return dailyValue.getFundNumber();
     }
 
-    public DailyValueDTO getDailyValue(String fundNumber/*, Date date*/){
+    public DailyValueDTO getDailyValue(String fundNumber, Date fundDate){
         Assert.hasLength(fundNumber, "缺少查询的基金代码");
-        /*Assert.hasLength(String.valueOf(date), "缺少查询的日期");*/
-        return dailyValueMapper.getDailyValue(fundNumber/*, date*/); }
+        Assert.hasLength(String.valueOf(fundDate), "缺少查询的日期");
+        return dailyValueMapper.getDailyValue(fundNumber,fundDate); }
 
 }

@@ -3,6 +3,7 @@ import org.apache.ibatis.annotations.*;
 import tongji.product.api.pojo.HoldingsDTO;
 import java.util.List;
 
+@Mapper
 public interface HoldingsMapper {
 
     @Insert("INSERT INTO investor_holdings(fund_number, cer_number, total_share, card_number) VALUES (#{holdings.fundNumber}, #{holdings.cerNumber}, #{holdings.totalShare}, #{holdings.cardNumber})")
