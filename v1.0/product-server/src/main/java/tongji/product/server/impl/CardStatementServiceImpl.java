@@ -8,6 +8,7 @@ import tongji.product.api.CardStatementService;
 import tongji.product.api.pojo.CardStatementDTO;
 import tongji.product.server.mapper.CardStatementMapper;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class CardStatementServiceImpl implements CardStatementService {
     private CardStatementMapper cardStatementMapper;
 
     public String createCardStatement(CardStatementDTO cardStatement){
-        CardStatementDTO existCardStatement = cardStatementMapper.getCardStatement(cardStatement.getCardNumber(), cardStatement.getFundNumber(), cardStatement.getStateDate());
+        CardStatementDTO existCardStatement = cardStatementMapper.getCardStatement(cardStatement.getCardNumber(), cardStatement.getFundNumber(), (Timestamp) cardStatement.getStateDate());
         if(null == existCardStatement){
             cardStatementMapper.addCardStatement(cardStatement);
             return cardStatement.getCardNumber();
@@ -34,14 +35,14 @@ public class CardStatementServiceImpl implements CardStatementService {
     public List<CardStatementDTO> getCardStatementViaDate(String cardNumber, Date date) {
         Assert.hasLength(cardNumber, "缺少银行卡号");
         Assert.notNull(date, "缺少日期");
-        return cardStatementMapper.getCardStatementViaDate(cardNumber, date);
+        return cardStatementMapper.getCardStatementViaDate(cardNumber, (Timestamp) date);
     }
 
     public CardStatementDTO getCardStatement(String cardNumber, String fundNumber, Date date) {
         Assert.hasLength(cardNumber, "缺少银行卡号");
         Assert.hasLength(fundNumber, "缺少基金代码");
         Assert.notNull(date, "缺少日期");
-        return cardStatementMapper.getCardStatement(cardNumber, fundNumber, date);
+        return cardStatementMapper.getCardStatement(cardNumber, fundNumber, (Timestamp) date);
     }
 
 }

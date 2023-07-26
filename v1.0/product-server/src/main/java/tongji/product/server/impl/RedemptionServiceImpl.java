@@ -16,7 +16,10 @@ public class RedemptionServiceImpl implements RedemptionService {
     private RedemptionMapper redemptionMapper;
 
     public String createRedemption(RedemptionDTO redemption) {
-        RedemptionDTO existRedemption = redemptionMapper.getOneRedemption(redemption);
+        RedemptionDTO existRedemption = redemptionMapper.getOneRedemption(
+                redemption.getCerNumber(),
+                redemption.getFundNumber(),
+                redemption.getRedCardNumber());
         if(null == existRedemption){
             redemptionMapper.createRedemption(redemption);
             return redemption.getCerNumber();
@@ -25,7 +28,10 @@ public class RedemptionServiceImpl implements RedemptionService {
     }
 
     public String deleteRedemption(RedemptionDTO redemption) {
-        RedemptionDTO existRedemption = redemptionMapper.getOneRedemption(redemption);
+        RedemptionDTO existRedemption = redemptionMapper.getOneRedemption(
+                redemption.getCerNumber(),
+                redemption.getFundNumber(),
+                redemption.getRedCardNumber());
         if(null == existRedemption){
             throw new IllegalArgumentException("不存在相关赎回申请");
         }
@@ -38,11 +44,10 @@ public class RedemptionServiceImpl implements RedemptionService {
         return redemptionMapper.getRedemption(cerNumber);
     }
 
-    public RedemptionDTO getOneRedemption(RedemptionDTO redemption) {
-        Assert.hasLength(redemption.getCerNumber(), "缺少查询的证件号");
-        Assert.hasLength(redemption.getFundNumber(), "缺少查询的基金代码");
-        Assert.notNull(redemption.getRedDate(), "缺少查询的日期");
-        Assert.hasLength(redemption.getRedCardNumber(), "缺少查询的银行卡号");
-        return redemptionMapper.getOneRedemption(redemption);
+    public RedemptionDTO getOneRedemption(String cerNumber, String fundNumber, String redCardNumber) {
+        Assert.hasLength(cerNumber, "缺少查询的证件号");
+        Assert.hasLength(fundNumber, "缺少查询的基金代码");
+        Assert.hasLength(redCardNumber, "缺少查询的银行卡号");
+        return redemptionMapper.getOneRedemption(cerNumber, fundNumber, redCardNumber);
     }
 }

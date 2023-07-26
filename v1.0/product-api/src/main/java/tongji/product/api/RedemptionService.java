@@ -19,6 +19,6 @@ public interface RedemptionService {
     List<RedemptionDTO> getRedemption(String cerNumber);
 
     @CloudFunction("040104")
-    RedemptionDTO getOneRedemption(RedemptionDTO redemption);
+    RedemptionDTO getOneRedemption(String cerNumber, String fundNumber, String redCardNumber);
 
 }
