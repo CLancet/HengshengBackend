@@ -2,27 +2,18 @@ package tongji.product.client.controller;
 
 import com.hundsun.jrescloud.rpc.annotation.CloudReference;
 import com.hundsun.jrescloud.rpc.annotation.CloudService;
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-import org.apache.kafka.common.protocol.types.Field;
-import org.omg.CORBA.PUBLIC_MEMBER;
+import com.sun.xml.internal.ws.fault.ServerSOAPFaultException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 //<<<<<<< Updated upstream
-import tongji.product.api.BankCardService;
-import tongji.product.api.ProductService;
-import tongji.product.api.pojo.BankCardDTO;
-import tongji.product.api.pojo.ProductDTO;
+import tongji.product.api.*;
+import tongji.product.api.pojo.*;
 
 import java.util.List;
 //=======
-import tongji.product.api.DailyValueService;
-import tongji.product.api.InvesterService;
-import tongji.product.api.ProductService;
-import tongji.product.api.pojo.DailyValueDTO;
-import tongji.product.api.pojo.InvesterDTO;
 import tongji.product.api.pojo.ProductDTO;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 //>>>>>>> Stashed changes
 
 @RestController
@@ -33,6 +24,13 @@ public class ClientController {
 
     @CloudReference
     private BankCardService bankCardService;
+
+    @CloudReference
+    private DailyValueService dailyValueService;
+
+    @CloudReference
+    private InvesterService investerService;
+
 
     @RequestMapping(value = "/createProduct", method = RequestMethod.GET)
     public String createProduct(@RequestParam(value = "fund_number", required = false) String fundNumber,
@@ -112,8 +110,7 @@ public class ClientController {
         card.setCerNumber(cerNumber);
         return bankCardService.modifyBankCard(card);
     }
-    @CloudReference
-    private InvesterService investerService;
+
 
     @RequestMapping(value = "/createInvester",method = RequestMethod.GET)
     public String createInvester(@RequestParam(value = "user_type") String userType,
@@ -136,39 +133,38 @@ public class ClientController {
         return investerService.getInvester(cerNumber);
     }
 
-    @CloudReference
-    private DailyValueService dailyValueService;
+
     @RequestMapping(value = "/createDailyValue",method = RequestMethod.POST)
     public String createDailyValue(@RequestParam(value = "fund_number") String fundNumber,
-                                   @RequestParam(value = "value") float value,
-                                   @RequestParam(value = "date") Date date) {
+                                   @RequestParam(value = "fund_value") float fundValue,
+                                   @RequestParam(value = "fund_date") Date fundDate) {
         DailyValueDTO dailyValue = new DailyValueDTO();
         dailyValue.setFundNumber(fundNumber);
-        dailyValue.setValue(value);
-        dailyValue.setDate(date);
+        dailyValue.setFundValue(fundValue);
+        dailyValue.setFundDate(fundDate);
 //        if (date.matches("\\d{4}-\\d{2}-\\d{2}")) {
 //            // Try to parse the String value into a java.sql.Date object using the valueOf() method
 //            try {
 //                java.sql.Date fundDate = java.sql.Date.valueOf(date);
 //                // Do something with the sqlDate object
-//                dailyValue.setDate(fundDate);
+//                dailyValue.setFundDate(fundDate);
 //            } catch (IllegalArgumentException e) {
 //                // Handle the exception if the date value is invalid
- //               e.printStackTrace();
- //           }
- //       }
+//                e.printStackTrace();
+//            }
+//        }
         //java.sql.Date fundDate = java.sql.Date.valueOf(date);
 
         return dailyValueService.createDailyValue(dailyValue);
     }
     @RequestMapping(path = "/updateDailyValue", method = RequestMethod.GET)
     public String updateDailyValue(@RequestParam(value = "fund_number") String fundNumber,
-                                   @RequestParam(value = "value") float value,
-                                   @RequestParam(value = "date") Date date){
+                                   @RequestParam(value = "fund_value") float fundValue,
+                                   @RequestParam(value = "fund_date") Date fundDate){
         DailyValueDTO dailyValue = new DailyValueDTO();
         dailyValue.setFundNumber(fundNumber);
-        dailyValue.setValue(value);
-        dailyValue.setDate(date);
+        dailyValue.setFundValue(fundValue);
+        dailyValue.setFundDate(fundDate);
         return dailyValueService.updateDailyValue(dailyValue);
     }
 
@@ -178,6 +174,7 @@ public class ClientController {
         return dailyValueService.getDailyValue(fundNumber/*, date*/);
 //>>>>>>> Stashed changes
     }
+
 }
 
 // 这是一个测试

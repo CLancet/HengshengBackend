@@ -39,10 +39,10 @@ public class DailyValueServiceImpl implements DailyValueService {
         return dailyValueMapper.getDailyValue(fundNumber/*, date*/);
     }
 
-    public DailyValueDTO getOneDailyValue(String fundNumber, Date date) {
+    public DailyValueDTO getOneDailyValue(String fundNumber, Date fundDate) {
         Assert.hasLength(fundNumber, "缺少查询的基金代码");
-        Assert.hasLength(String.valueOf(date), "缺少查询的日期");
-        return dailyValueMapper.getOneDailyValue(fundNumber, date);
+        Assert.hasLength(String.valueOf(fundDate), "缺少查询的日期");
+        return dailyValueMapper.getOneDailyValue(fundNumber, fundDate);
     }
 
 }
