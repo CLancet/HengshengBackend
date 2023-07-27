@@ -1,14 +1,14 @@
 package tongji.product.client.controller;
 
 import com.hundsun.jrescloud.rpc.annotation.CloudReference;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import tongji.product.api.CardStatementService;
 import tongji.product.api.pojo.CardStatementDTO;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +16,12 @@ import java.util.List;
 public class CardStatementController {
     @CloudReference
     private CardStatementService cardStatementService;
+
+    @InitBinder
+    public void initBinder(final WebDataBinder binder){
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        binder.registerCustomEditor(java.util.Date.class, new CustomDateEditor(dateFormat, true));
+    }
 
     @RequestMapping(value = "/createCardStatement", method = RequestMethod.GET)
     public String createCardStatement(@RequestParam(value = "card_number") String cardNumber,
@@ -43,18 +49,14 @@ public class CardStatementController {
 
     @RequestMapping(value = "/getCardStatement/date", method = RequestMethod.GET)
     public List<CardStatementDTO> getCardStatementViaDate(@RequestParam(value = "card_number", required = true) String cardNumber,
-                                                          @RequestParam(value = "state_date", required = true) Timestamp stateDate){
-        Date nowDate = new Date(stateDate.getTime());
-        System.out.println(cardNumber + ' ' + nowDate.toString());
-        return cardStatementService.getCardStatementViaDate(cardNumber,nowDate);
+                                                          @RequestParam(value = "state_date", required = true) Date stateDate){
+        return cardStatementService.getCardStatementViaDate(cardNumber,stateDate);
     }
 
     @RequestMapping(value = "/getCardStatement/one", method = RequestMethod.GET)
     public CardStatementDTO getCardStatement(@RequestParam(value = "card_number", required = true) String cardNumber,
                                              @RequestParam(value = "fund_number", required = true) String fundNumber,
-                                             @RequestParam(value = "state_date", required = true) Timestamp stateDate){
-        Date nowDate = new Date(stateDate.getTime());
-        System.out.println(cardNumber + ' ' + nowDate.toString());
+                                             @RequestParam(value = "state_date", required = true) Date stateDate){
         return cardStatementService.getCardStatement(cardNumber,fundNumber,stateDate);
     }
 

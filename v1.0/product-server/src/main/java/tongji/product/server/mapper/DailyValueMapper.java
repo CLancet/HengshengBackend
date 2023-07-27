@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.*;
 import tongji.product.api.pojo.DailyValueDTO;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Mapper

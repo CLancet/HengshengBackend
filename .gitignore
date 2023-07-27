@@ -11,3 +11,4 @@ v1.0/product-server/src/main/resources/application.properties
 v1.0/product-server/src/main/resources/application.properties
 
 v1.0/product-server/src/main/resources/application.properties
+*.class

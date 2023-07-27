@@ -9,8 +9,8 @@ import java.util.Date;
 public class CardStatementDTO {
     @NotBlank
     private String cardNumber;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-ddTHH:mm:ss",timezone = "GMT+8")
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+//    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date stateDate;
     @NotBlank
     private float stateAmount;
