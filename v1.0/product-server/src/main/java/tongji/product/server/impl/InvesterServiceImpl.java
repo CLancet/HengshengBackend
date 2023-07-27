@@ -7,6 +7,9 @@ import tongji.product.api.InvesterService;
 import tongji.product.api.pojo.InvesterDTO;
 import tongji.product.server.mapper.InvesterMapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @CloudComponent
 public class InvesterServiceImpl implements InvesterService {
     @Autowired
@@ -25,5 +28,19 @@ public class InvesterServiceImpl implements InvesterService {
 
     public  InvesterDTO getInvester(String cerNumber){
         return investerMapper.getInvester(cerNumber);
+    }
+
+    public List<InvesterDTO> getAllInvester() {
+        return investerMapper.getAllInvester();
+    }
+
+    public List<InvesterDTO> searchInvesterViaName(String keyWord) {
+        String key = '%' + keyWord + '%';
+        return investerMapper.searchInvesterViaName(key);
+    }
+
+    public List<InvesterDTO> searchInvesterViaNumber(String keyWord) {
+        String key = '%' + keyWord + '%';
+        return investerMapper.searchInvesterViaNumber(key);
     }
 }

@@ -141,6 +141,12 @@ public class ClientController {
         return investerService.getInvester(cerNumber);
     }
 
+    @RequestMapping(path = "/getInvester/all", method = RequestMethod.GET)
+    public List<InvesterDTO> getAllInvester(){
+        return investerService.getAllInvester();
+    }
+
+
 
     @RequestMapping(value = "/createDailyValue",method = RequestMethod.POST)
     public String createDailyValue(@RequestParam(value = "fund_number") String fundNumber,

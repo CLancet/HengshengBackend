@@ -1,19 +1,25 @@
 package tongji.product.client.controller;
 
 import com.hundsun.jrescloud.rpc.annotation.CloudReference;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import tongji.product.api.RiskTraceService;
 import tongji.product.api.pojo.RiskTraceDTO;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @RestController
 public class RiskTraceController {
     @CloudReference
     private RiskTraceService riskTraceService;
+
+    @InitBinder
+    public void initBinder(final WebDataBinder binder){
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+    }
 
     @RequestMapping(value = "/createRiskTrace", method = RequestMethod.GET)
     public String createRiskTrace(@RequestParam(value = "fund_number", required = true) String fundNumber,

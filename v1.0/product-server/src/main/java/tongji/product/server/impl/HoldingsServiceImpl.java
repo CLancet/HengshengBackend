@@ -28,6 +28,10 @@ public class HoldingsServiceImpl implements HoldingsService {
         return holdingsMapper.getOneHoldings(cardNumber, cerNumber);
     }
 
+    public int deleteInvestorHoldings() {
+        return holdingsMapper.deleteHoldings();
+    }
+
     public String updateInvestorHoldings(HoldingsDTO holdings) {
         HoldingsDTO existingHoldings = holdingsMapper.getOneHoldings(holdings.getCardNumber(), holdings.getCerNumber());
         if (existingHoldings == null) {
@@ -37,5 +41,17 @@ public class HoldingsServiceImpl implements HoldingsService {
         holdingsMapper.updateHoldings(holdings);
         return holdings.getFundNumber();
     }
+
+    public String checkHoldings(HoldingsDTO holdings){
+        HoldingsDTO existShare = holdingsMapper.getOneHoldings(holdings.getCardNumber(),holdings.getCerNumber());
+        if(null == existShare){
+            return "不存在对应银行卡持仓记录";
+        }
+        if(existShare.getTotalShare() < holdings.getTotalShare()){
+            return "持仓份额小于赎回份额";
+        }
+        return "OK";
+    }
+
 
 }

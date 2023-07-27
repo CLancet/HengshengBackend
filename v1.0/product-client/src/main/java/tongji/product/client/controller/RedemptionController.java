@@ -4,8 +4,12 @@ import com.hundsun.jrescloud.rpc.annotation.CloudReference;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import tongji.product.api.HoldingsService;
 import tongji.product.api.RedemptionService;
+import tongji.product.api.ShareService;
+import tongji.product.api.pojo.HoldingsDTO;
 import tongji.product.api.pojo.RedemptionDTO;
+import tongji.product.api.pojo.ShareDTO;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -15,6 +19,9 @@ import java.util.List;
 public class RedemptionController {
     @CloudReference
     private RedemptionService redemptionService;
+
+    @CloudReference
+    private HoldingsService holdingsService;
 
     @InitBinder
     public void initBinder(final WebDataBinder binder){
@@ -26,7 +33,7 @@ public class RedemptionController {
     public String createRedemption(@RequestParam(value = "red_state", required = false) String redState,
                                    @RequestParam(value = "fund_number", required = true) String fundNumber,
                                    @RequestParam(value = "cer_number", required = true) String cerNumber,
-                                   @RequestParam(value = "red_amount", required = true) float redAmount,
+                                   @RequestParam(value = "red_amount", required = false) float redAmount,
                                    /*@RequestParam(value = "red_date", required = true) Date redDate,*/
                                    @RequestParam(value = "red_share", required = true) int redShare,
                                    @RequestParam(value = "red_card_number", required = true) String redCardNumber) {
@@ -36,10 +43,24 @@ public class RedemptionController {
         redemption.setCerNumber(cerNumber);
         redemption.setRedAmount(redAmount);
         Date redDate = new Date();
+        System.out.println(redDate);
         redemption.setRedDate(redDate);
         redemption.setRedShare(redShare);
         redemption.setRedCardNumber(redCardNumber);
-        return redemptionService.createRedemption(redemption);
+
+        HoldingsDTO holdings = new HoldingsDTO();
+        holdings.setCardNumber(redCardNumber);
+        holdings.setCerNumber(cerNumber);
+        holdings.setFundNumber(fundNumber);
+        holdings.setTotalShare(redShare);
+
+        String ret = holdingsService.checkHoldings(holdings);
+        if(ret.equals("OK")){
+            return ret + ": " + redemptionService.createRedemption(redemption);
+        }
+        else{
+            return ret;
+        }
     }
 
     @RequestMapping(value = "/deleteRedemption", method = RequestMethod.GET)
@@ -73,6 +94,5 @@ public class RedemptionController {
                                           @RequestParam(value = "red_card_number") String redCardNumber){
         return redemptionService.getOneRedemption(cerNumber, fundNumber, redDate, redCardNumber);
     }
-
 
 }

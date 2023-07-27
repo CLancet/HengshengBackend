@@ -1,5 +1,6 @@
 package tongji.product.server.impl;
 
+import com.hundsun.jrescloud.rpc.annotation.CloudComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import tongji.product.api.RiskTraceService;
@@ -8,6 +9,7 @@ import tongji.product.server.mapper.RiskTraceMapper;
 
 import java.util.Date;
 
+@CloudComponent
 public class RiskTraceServiceImpl implements RiskTraceService {
     @Autowired
     private RiskTraceMapper riskTraceMapper;

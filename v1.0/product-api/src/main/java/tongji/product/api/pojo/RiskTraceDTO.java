@@ -14,7 +14,7 @@ public class RiskTraceDTO {
     private String cerNumber;
     @NotBlank
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd",timezone = "GMT+8")
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    //@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date redDate;
 
     public String getFundNumber() { return fundNumber; }
