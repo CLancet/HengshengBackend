@@ -18,7 +18,7 @@ public class DailyValueServiceImpl implements DailyValueService {
     private DailyValueMapper dailyValueMapper;
 
     public String createDailyValue(DailyValueDTO dailyValue){
-        DailyValueDTO existDailyValue = dailyValueMapper.getOneDailyValue(dailyValue.getFundNumber(), dailyValue.getDate());
+        DailyValueDTO existDailyValue = dailyValueMapper.getOneDailyValue(dailyValue.getFundNumber(), dailyValue.getFundDate());
         if(existDailyValue == null){
             dailyValueMapper.createDailyValue(dailyValue);
             return dailyValue.getFundNumber();
@@ -27,7 +27,7 @@ public class DailyValueServiceImpl implements DailyValueService {
     }
 
     public String updateDailyValue(DailyValueDTO dailyValue){
-        DailyValueDTO existDailyValue = dailyValueMapper.getOneDailyValue(dailyValue.getFundNumber(), dailyValue.getDate());
+        DailyValueDTO existDailyValue = dailyValueMapper.getOneDailyValue(dailyValue.getFundNumber(), dailyValue.getFundDate());
         if(existDailyValue == null){ throw new IllegalArgumentException("不存在相同的基金代码和日期的日净值"); }
         dailyValueMapper.updateDailyValue(dailyValue);
         return dailyValue.getFundNumber();

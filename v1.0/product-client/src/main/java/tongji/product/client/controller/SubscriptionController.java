@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import tongji.product.api.BankCardService;
 import tongji.product.api.InvesterService;
 import tongji.product.api.SubscriptionService;
@@ -15,7 +16,7 @@ import tongji.product.api.pojo.SubscriptionDTO;
 
 import java.util.List;
 
-
+@RestController
 public class SubscriptionController {
 
     @CloudReference
