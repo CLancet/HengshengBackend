@@ -14,7 +14,7 @@ public class RedemptionDTO {
     private String cerNumber;
     private float redAmount;
     @NotBlank
-//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    //@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date redDate;
     @NotBlank

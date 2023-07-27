@@ -1,20 +1,26 @@
 package tongji.product.client.controller;
 
 import com.hundsun.jrescloud.rpc.annotation.CloudReference;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import tongji.product.api.RedemptionService;
 import tongji.product.api.pojo.RedemptionDTO;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @RestController
 public class RedemptionController {
     @CloudReference
     private RedemptionService redemptionService;
+
+    @InitBinder
+    public void initBinder(final WebDataBinder binder){
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        binder.registerCustomEditor(java.util.Date.class, new CustomDateEditor(dateFormat, true));
+    }
 
     @RequestMapping(value = "/createRedemption", method = RequestMethod.GET)
     public String createRedemption(@RequestParam(value = "red_state", required = false) String redState,
@@ -63,8 +69,9 @@ public class RedemptionController {
     @RequestMapping(value = "/getRedemption/one", method = RequestMethod.GET)
     public RedemptionDTO getOneRedemption(@RequestParam(value = "cer_number") String cerNumber,
                                           @RequestParam(value = "fund_number") String fundNumber,
+                                          @RequestParam(value = "red_date", required = true) Date redDate,
                                           @RequestParam(value = "red_card_number") String redCardNumber){
-        return redemptionService.getOneRedemption(cerNumber, fundNumber, redCardNumber);
+        return redemptionService.getOneRedemption(cerNumber, fundNumber, redDate, redCardNumber);
     }
 
 
