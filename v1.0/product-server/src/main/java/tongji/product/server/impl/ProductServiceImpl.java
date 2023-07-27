@@ -31,7 +31,7 @@ public class ProductServiceImpl implements ProductService {
         ProductDTO existProduct = productMapper.getProduct(Product.getFundNumber());
         if(null == existProduct){
             //productMapper.createProduct(Product);
-            return Product.getFundNumber();
+            return "不存在该产品";
         }
         productMapper.updateProduct(Product);
         return Product.getFundNumber();

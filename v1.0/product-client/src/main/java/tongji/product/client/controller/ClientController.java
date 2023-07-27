@@ -50,10 +50,18 @@ public class ClientController {
         return productService.getProduct(fundNumber);
     }
 
-//    @RequestMapping(value = "/modifyProduct", method = RequestMethod.POST)
-//    public String modifyProduct(@RequestBody ProductDTO product){
-//        return productService.modifyProduct(product);
-//    }
+    @RequestMapping(value = "/modifyProduct", method = RequestMethod.PATCH)
+    public String modifyProduct(@RequestParam(value = "fund_number", required = false) String fundNumber,
+                                @RequestParam(value = "fund_name") String fundName,
+                                @RequestParam(value = "fund_type", required = false) String fundType,
+                                @RequestParam(value = "fund_risk",required = false )int fundRisk){
+        ProductDTO product = new ProductDTO();
+        product.setFundNumber(fundNumber);
+        product.setFundName(fundName);
+        product.setFundType(fundType);
+        product.setFundRisk(fundRisk);
+        return productService.modifyProduct(product);
+    }
 
 //    @RequestMapping(value = "/sayHello",method = RequestMethod.GET)
 //    public String sayHello(){
@@ -137,24 +145,11 @@ public class ClientController {
     @RequestMapping(value = "/createDailyValue",method = RequestMethod.POST)
     public String createDailyValue(@RequestParam(value = "fund_number") String fundNumber,
                                    @RequestParam(value = "fund_value") float fundValue,
-                                   @RequestParam(value = "fund_date") Date fundDate) {
+                                   @RequestParam(value = "fund_date") java.sql.Date fundDate) {
         DailyValueDTO dailyValue = new DailyValueDTO();
         dailyValue.setFundNumber(fundNumber);
         dailyValue.setFundValue(fundValue);
         dailyValue.setFundDate(fundDate);
-//        if (date.matches("\\d{4}-\\d{2}-\\d{2}")) {
-//            // Try to parse the String value into a java.sql.Date object using the valueOf() method
-//            try {
-//                java.sql.Date fundDate = java.sql.Date.valueOf(date);
-//                // Do something with the sqlDate object
-//                dailyValue.setFundDate(fundDate);
-//            } catch (IllegalArgumentException e) {
-//                // Handle the exception if the date value is invalid
-//                e.printStackTrace();
-//            }
-//        }
-        //java.sql.Date fundDate = java.sql.Date.valueOf(date);
-
         return dailyValueService.createDailyValue(dailyValue);
     }
     @RequestMapping(path = "/updateDailyValue", method = RequestMethod.GET)
@@ -172,7 +167,6 @@ public class ClientController {
     public List<DailyValueDTO> getDailyValue(@RequestParam(value = "fund_number") String fundNumber
                                        /*@RequestParam(value = "date") Date date*/){
         return dailyValueService.getDailyValue(fundNumber/*, date*/);
-//>>>>>>> Stashed changes
     }
 
 }

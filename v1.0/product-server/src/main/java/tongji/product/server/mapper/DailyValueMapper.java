@@ -15,10 +15,10 @@ public interface DailyValueMapper {
     @Update("UPDATE daily_value SET fund_value = #{dailyValue.fundValue} WHERE fund_number = #{dailyValue.fundNumber} AND fund_date = #{dailyValue.fundDate}")
     int updateDailyValue(@Param("dailyValue")DailyValueDTO dailyValue);
 
-    @Select("SELECT fund_number as fundNumber,fund_value as value, fund_date as date FROM daily_value WHERE fund_number = #{fundNumber} ")
+    @Select("SELECT fund_number as fundNumber,fund_value as FundValue, fund_date as fundDate FROM daily_value WHERE fund_number = #{fundNumber} ")
     //ND fund_date = #{date}
     List<DailyValueDTO> getDailyValue(@Param("fundNumber")String fundNumber/*, @Param("date") Date date*/);
 
-    @Select("SELECT fund_number as fundNumber,fund_value as value, fund_date as date FROM daily_value WHERE fund_number = #{fundNumber} and fund_date=#{fundDate}")
-    DailyValueDTO getOneDailyValue(@Param("fundNumber")String fundNumber, @Param("date") Date fundDate);
+    @Select("SELECT fund_number as fundNumber,fund_value as value, fund_date as fundDate FROM daily_value WHERE fund_number = #{fundNumber} and fund_date=#{fundDate}")
+    DailyValueDTO getOneDailyValue(@Param("fundNumber")String fundNumber, @Param("fundDate") Date fundDate);
 }
