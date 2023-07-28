@@ -6,6 +6,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import tongji.product.api.HoldingsService;
 import tongji.product.api.RedemptionService;
+import tongji.product.api.SettlementService;
 import tongji.product.api.pojo.HoldingsDTO;
 import tongji.product.api.pojo.RedemptionDTO;
 
@@ -20,6 +21,9 @@ public class RedemptionController {
 
     @CloudReference
     private HoldingsService holdingsService;
+
+    @CloudReference
+    private SettlementService settlementService;
 
     @InitBinder
     public void initBinder(final WebDataBinder binder){
@@ -54,6 +58,10 @@ public class RedemptionController {
 
         String ret = holdingsService.checkHoldings(holdings);
         if(ret.equals("OK")){
+            HoldingsDTO existShare = holdingsService.getInvestorHoldings(holdings.getFundNumber(),holdings.getCerNumber(),holdings.getCardNumber());
+            float preShare = existShare.getTotalShare();
+            existShare.setTotalShare(preShare - redShare);
+            holdingsService.updateInvestorHoldings(existShare);
             return ret + ": " + redemptionService.createRedemption(redemption);
         }
         else{
@@ -91,6 +99,11 @@ public class RedemptionController {
                                           @RequestParam(value = "red_date", required = true) Date redDate,
                                           @RequestParam(value = "red_card_number") String redCardNumber){
         return redemptionService.getOneRedemption(cerNumber, fundNumber, redDate, redCardNumber);
+    }
+
+    @RequestMapping(path = "/settlement/red",method = RequestMethod.PATCH)
+    public String settlement(){
+        return settlementService.settlementRe();
     }
 
 }

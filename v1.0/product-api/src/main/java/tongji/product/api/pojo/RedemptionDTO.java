@@ -42,4 +42,8 @@ public class RedemptionDTO {
 
     public String getRedCardNumber() { return redCardNumber; }
     public void setRedCardNumber(String redCardNumber) { this.redCardNumber = redCardNumber; }
+
+    public float calcRedAmount(float fundValue){
+        return fundValue * redShare;
+    }
 }

@@ -24,4 +24,8 @@ public interface RedemptionMapper {
             "where cer_number=#{cer} and fund_number=#{fund} and red_card_number=#{card} and red_date=#{date}")
     RedemptionDTO getOneRedemption( @Param("cer") String cerNumber, @Param("fund") String fundNumber,
                                     @Param("date") Date redDate, @Param("card") String redCardNumber);
+
+    @Select("select red_state as redState,fund_number as fundNumber,cer_number as cerNumber,red_amount as redAmount," +
+            "red_date as redDate,red_share as redShare,red_card_number as redCardNumber from redemption where red_state<>'已上账'")
+    List<RedemptionDTO> getUnsettledRedemption();
 }

@@ -1,17 +1,15 @@
 package tongji.product.server.impl;
+import clojure.lang.IFn;
 import com.fasterxml.jackson.databind.node.ShortNode;
 import com.hundsun.jrescloud.rpc.annotation.CloudComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
+import tongji.product.api.DailyValueService;
+import tongji.product.api.RedemptionService;
 import tongji.product.api.RiskTraceService;
 import tongji.product.api.SettlementService;
-import tongji.product.api.pojo.HoldingsDTO;
-import tongji.product.api.pojo.RiskTraceDTO;
-import tongji.product.api.pojo.SubscriptionDTO;
-import tongji.product.api.pojo.DailyValueDTO;
-import tongji.product.server.mapper.DailyValueMapper;
-import tongji.product.server.mapper.HoldingsMapper;
-import tongji.product.server.mapper.SubscriptionMapper;
+import tongji.product.api.pojo.*;
+import tongji.product.server.mapper.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,6 +24,10 @@ public class SettlementServiceImpl implements SettlementService {
     private DailyValueMapper dailyValueMapper;
     @Autowired
     private HoldingsMapper holdingsMapper;
+    @Autowired
+    private RedemptionMapper redemptionMapper;
+    @Autowired
+    private BankCardMapper bankCardMapper;
 
     public List<SubscriptionDTO> getUnsettledSubscriptions() {
         List<SubscriptionDTO> subscriptions = subscriptionMapper.getUnsettledSubscriptions();
@@ -91,6 +93,49 @@ public class SettlementServiceImpl implements SettlementService {
                 holdingsMapper.updateHoldings(existingHoldings);
                 //return holdings.getFundNumber();
             }
+        }
+        return "清算完成";
+    }
+
+    private List<RedemptionDTO> getUnsettledRedemptions(){
+        return redemptionMapper.getUnsettledRedemption();
+    }
+
+    public String settlementRe() {
+        List<RedemptionDTO> unsettledRedemption = getUnsettledRedemptions();
+        for(RedemptionDTO redemption : unsettledRedemption){
+            Date redDate = redemption.getRedDate();
+            String fundNumber = redemption.getFundNumber();
+
+            try{
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String redDateString = dateFormat.format(redDate);
+                Date formattedDate = dateFormat.parse(redDateString);
+                DailyValueDTO dailyValue = dailyValueMapper.getOneDailyValue(fundNumber,formattedDate);
+                float fundValue = dailyValue.getFundValue();
+                if (fundValue == 0 || Math.abs(fundValue) < 0.000001) {
+                    throw new IllegalArgumentException("fundValue cannot be zero");
+                }
+
+                float redAmount = redemption.calcRedAmount(fundValue);
+                redemption.setRedAmount(redAmount);
+                redemption.setRedState("已上账");
+
+            } catch(Exception e) {
+                System.out.println(e.toString());
+            }
+
+            BankCardDTO bankCard = bankCardMapper.getOneCard(redemption.getRedCardNumber(),redemption.getCerNumber());
+            float preBalance = bankCard.getBalance();
+            bankCard.setBalance(preBalance + redemption.getRedAmount());
+            bankCardMapper.updateCard(bankCard);
+
+            CardStatementDTO cardStatement = new CardStatementDTO();
+            cardStatement.setStateDate(new Date());
+            cardStatement.setFundNumber(redemption.getFundNumber());
+            cardStatement.setCardNumber(redemption.getRedCardNumber());
+            cardStatement.setStateAmount(redemption.getRedAmount());
+            cardStatement.setStaBalance(bankCard.getBalance());
         }
         return "清算完成";
     }

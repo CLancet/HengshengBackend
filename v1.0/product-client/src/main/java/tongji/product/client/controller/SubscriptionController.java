@@ -76,7 +76,7 @@ public class SubscriptionController {
         return subscriptionService.createSubscription(subscription);
     }
 
-    @RequestMapping(path = "/settlement",method = RequestMethod.PATCH)
+    @RequestMapping(path = "/settlement/sub",method = RequestMethod.PATCH)
     public String settlement(){
         return settlementService.settlementSub();
     }
