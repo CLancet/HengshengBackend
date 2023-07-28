@@ -10,7 +10,11 @@ public interface SubscriptionMapper {
     @Select("SELECT sub_state AS subState, fund_number AS fundNumber, cer_number AS cerNumber, sub_amount AS subAmount, sub_date AS subDate, sub_share AS subShare, sub_card_number AS subCardNumber FROM subscription WHERE cer_number = #{cerNumber}")
     List<SubscriptionDTO> getSubscriptions(@Param("cerNumber") String cerNumber);
 
-    @Update("UPDATE subscription SET sub_state = #{subscription.subState}, sub_amount = #{subscription.subAmount}, sub_date = #{subscription.subDate}, sub_share = #{subscription.subShare}, sub_card_number = #{subscription.subCardNumber} WHERE fund_number = #{subscription.fundNumber} AND cer_number = #{subscription.cerNumber}")
+    @Update("UPDATE subscription SET sub_state = #{subscription.subState},  sub_share = #{subscription.subShare} " +
+            "WHERE fund_number = #{subscription.fundNumber} AND" +
+            " cer_number = #{subscription.cerNumber} AND " +
+            "sub_date = #{subscription.subDate} AND " +
+            "sub_card_number = #{subscription.subCardNumber}")
     int updateSubscription(@Param("subscription") SubscriptionDTO subscription);
 
     @Delete("DELETE FROM subscription WHERE sub_card_number = #{subCardNumber} AND cer_number = #{cerNumber}")
@@ -18,4 +22,7 @@ public interface SubscriptionMapper {
 
     @Select("SELECT sub_state AS subState, fund_number AS fundNumber, cer_number AS cerNumber, sub_amount AS subAmount, sub_date AS subDate, sub_share AS subShare, sub_card_number AS subCardNumber FROM subscription WHERE sub_card_number = #{subCardNumber} AND cer_number = #{cerNumber}")
     SubscriptionDTO getOneSubscription(@Param("subCardNumber") String subCardNumber, @Param("cerNumber") String cerNumber);
+
+    @Select("SELECT sub_state AS subState, fund_number AS fundNumber, cer_number AS cerNumber, sub_amount AS subAmount, sub_date AS subDate, sub_share AS subShare, sub_card_number AS subCardNumber FROM subscription WHERE sub_state <> '已上账'")
+    List<SubscriptionDTO> getUnsettledSubscriptions();
 }

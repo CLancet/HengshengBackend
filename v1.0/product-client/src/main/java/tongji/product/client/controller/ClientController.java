@@ -32,36 +32,6 @@ public class ClientController {
     private InvesterService investerService;
 
 
-    @RequestMapping(value = "/createProduct", method = RequestMethod.GET)
-    public String createProduct(@RequestParam(value = "fund_number", required = false) String fundNumber,
-                                @RequestParam(value = "fund_name") String fundName,
-                                @RequestParam(value = "fund_type", required = false) String fundType,
-                                @RequestParam(value = "fund_risk",required = false )int fundRisk){
-
-        ProductDTO product = new ProductDTO();
-        product.setFundNumber(fundNumber);
-        product.setFundName(fundName);
-        product.setFundType(fundType);
-        product.setFundRisk(fundRisk);
-        return productService.createProduct(product);
-    }
-    @RequestMapping(path = "/getProduct", method = RequestMethod.GET)
-    public ProductDTO getProduct(@RequestParam(value = "fund_number") String fundNumber){
-        return productService.getProduct(fundNumber);
-    }
-
-    @RequestMapping(value = "/modifyProduct", method = RequestMethod.PATCH)
-    public String modifyProduct(@RequestParam(value = "fund_number", required = false) String fundNumber,
-                                @RequestParam(value = "fund_name") String fundName,
-                                @RequestParam(value = "fund_type", required = false) String fundType,
-                                @RequestParam(value = "fund_risk",required = false )int fundRisk){
-        ProductDTO product = new ProductDTO();
-        product.setFundNumber(fundNumber);
-        product.setFundName(fundName);
-        product.setFundType(fundType);
-        product.setFundRisk(fundRisk);
-        return productService.modifyProduct(product);
-    }
 
 //    @RequestMapping(value = "/sayHello",method = RequestMethod.GET)
 //    public String sayHello(){
@@ -148,32 +118,7 @@ public class ClientController {
 
 
 
-    @RequestMapping(value = "/createDailyValue",method = RequestMethod.POST)
-    public String createDailyValue(@RequestParam(value = "fund_number") String fundNumber,
-                                   @RequestParam(value = "fund_value") float fundValue,
-                                   @RequestParam(value = "fund_date") java.sql.Date fundDate) {
-        DailyValueDTO dailyValue = new DailyValueDTO();
-        dailyValue.setFundNumber(fundNumber);
-        dailyValue.setFundValue(fundValue);
-        dailyValue.setFundDate(fundDate);
-        return dailyValueService.createDailyValue(dailyValue);
-    }
-    @RequestMapping(path = "/updateDailyValue", method = RequestMethod.GET)
-    public String updateDailyValue(@RequestParam(value = "fund_number") String fundNumber,
-                                   @RequestParam(value = "fund_value") float fundValue,
-                                   @RequestParam(value = "fund_date") Date fundDate){
-        DailyValueDTO dailyValue = new DailyValueDTO();
-        dailyValue.setFundNumber(fundNumber);
-        dailyValue.setFundValue(fundValue);
-        dailyValue.setFundDate(fundDate);
-        return dailyValueService.updateDailyValue(dailyValue);
-    }
 
-    @RequestMapping(path = "/getDailyValue", method = RequestMethod.GET)
-    public List<DailyValueDTO> getDailyValue(@RequestParam(value = "fund_number") String fundNumber
-                                       /*@RequestParam(value = "date") Date date*/){
-        return dailyValueService.getDailyValue(fundNumber/*, date*/);
-    }
 
 }
 

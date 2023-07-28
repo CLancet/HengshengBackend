@@ -3,7 +3,7 @@ package tongji.product.api.pojo;
 public class HoldingsDTO {
     private String fundNumber;
     private String cerNumber;
-    private int totalShare;
+    private Float totalShare;
     private String cardNumber;
 
 //    public InvestorHoldingsDTO(String fundNumber, String cerNumber, BigDecimal totalShare, String cardNumber) {
@@ -29,11 +29,11 @@ public class HoldingsDTO {
         this.cerNumber = cerNumber;
     }
 
-    public int getTotalShare() {
+    public Float getTotalShare() {
         return totalShare;
     }
 
-    public void setTotalShare(int totalShare) {
+    public void setTotalShare(Float totalShare) {
         this.totalShare = totalShare;
     }
 

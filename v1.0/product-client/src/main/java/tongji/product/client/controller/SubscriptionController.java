@@ -1,19 +1,25 @@
 package tongji.product.client.controller;
 
 import com.hundsun.jrescloud.rpc.annotation.CloudReference;
+import org.omg.CORBA.PUBLIC_MEMBER;
+import org.springframework.beans.propertyeditors.CustomBooleanEditor;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import tongji.product.api.BankCardService;
 import tongji.product.api.InvesterService;
+import tongji.product.api.SettlementService;
 import tongji.product.api.SubscriptionService;
 import tongji.product.api.pojo.BankCardDTO;
 import tongji.product.api.pojo.InvesterAndBankCardDTO;
 import tongji.product.api.pojo.InvesterDTO;
 import tongji.product.api.pojo.SubscriptionDTO;
 
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -27,6 +33,15 @@ public class SubscriptionController {
 
     @CloudReference
     private BankCardService bankCardService;
+
+    @CloudReference
+    private SettlementService settlementService;
+
+    @InitBinder
+    public void initBinder(final WebDataBinder binder){
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        binder.registerCustomEditor(java.util.Date.class, new CustomDateEditor(dateFormat,true));
+    }
 
     @RequestMapping(path = "/getInvesterAndCards",method = RequestMethod.GET)
     public ResponseEntity<InvesterAndBankCardDTO> getInvesterAndCards(@RequestParam(value = "cer_number")String cerNumber){
@@ -49,7 +64,7 @@ public class SubscriptionController {
 //        dailyValue.setFundDate(fundDate);
         String subState = "待确认";
         Float zeroShare = 0.0f;//待确认时，上账份额为0
-        java.util.Date subDate = new java.util.Date();
+        Date subDate = new Date();
         SubscriptionDTO subscription =new SubscriptionDTO();
         subscription.setSubState(subState);
         subscription.setFundNumber(fundNumber);
@@ -60,4 +75,11 @@ public class SubscriptionController {
         subscription.setSubCardNumber(subCardNumber);
         return subscriptionService.createSubscription(subscription);
     }
+
+    @RequestMapping(path = "/settlement",method = RequestMethod.PATCH)
+    public String settlement(){
+        return settlementService.settlementSub();
+    }
+
+
 }

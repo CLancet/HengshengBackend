@@ -8,7 +8,7 @@ public class SubscriptionDTO {
     private String cerNumber;
     private Float subAmount;
 
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd",timezone="GMT+8")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date subDate;
 
     private Float subShare;
@@ -68,5 +68,11 @@ public class SubscriptionDTO {
 
     public void setSubCardNumber(String subCardNumber) {
         this.subCardNumber = subCardNumber;
+    }
+
+    public Float calculateSubShare(Float fundValue) {
+        // 计算上账份额
+        Float subShare = subAmount / fundValue;
+        return subShare;
     }
 }

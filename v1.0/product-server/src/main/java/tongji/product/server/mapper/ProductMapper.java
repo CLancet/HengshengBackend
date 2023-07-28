@@ -27,7 +27,13 @@ public interface ProductMapper {
             "</script>")
     List<ProductDTO> getProductByParams(@Param("fundNumber") String fundNumber, @Param("fundName") String fundName, @Param("fundType") String fundType, @Param("fundRisk") Integer fundRisk);
 
-    @Update("UPDATE fund_product SET fund_name=#{product.productName}, fund_risk=#{product.fundRisk}, fund_type=#{product.fundType} WHERE fund_number=#{product.fundNumber}")
+    @Update("UPDATE fund_product SET fund_name=#{product.fundName}, fund_risk=#{product.fundRisk}, fund_type=#{product.fundType} WHERE fund_number=#{product.fundNumber}")
     int updateProduct(@Param("product") ProductDTO product);
+
+    @Delete("DELETE FROM fund_product WHERE fund_number=#{fundNumber}")
+    int deleteProduct(@Param("fundNumber") String fundNumber);
+
+    @Select("SELECT fund_number AS fundNumber,fund_name AS fundName,fund_type as fundType, fund_risk as fundRisk from fund_product ")
+    List<ProductDTO> getAllProduct();
 
 }
