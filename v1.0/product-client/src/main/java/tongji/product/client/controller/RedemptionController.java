@@ -33,7 +33,7 @@ public class RedemptionController {
                                    @RequestParam(value = "cer_number", required = true) String cerNumber,
                                    @RequestParam(value = "red_amount", required = false) float redAmount,
                                    /*@RequestParam(value = "red_date", required = true) Date redDate,*/
-                                   @RequestParam(value = "red_share", required = true) int redShare,
+                                   @RequestParam(value = "red_share", required = true) float redShare,
                                    @RequestParam(value = "red_card_number", required = true) String redCardNumber) {
         RedemptionDTO redemption = new RedemptionDTO();
         redemption.setRedState((redState == null? "待确认":redState));
@@ -67,7 +67,7 @@ public class RedemptionController {
                                    @RequestParam(value = "cer_number", required = true) String cerNumber,
                                    @RequestParam(value = "red_amount", required = true) float redAmount,
                                    /*@RequestParam(value = "red_date", required = true) Date redDate,*/
-                                   @RequestParam(value = "red_share", required = true) int redShare,
+                                   @RequestParam(value = "red_share", required = true) float redShare,
                                    @RequestParam(value = "red_card_number", required = true) String redCardNumber){
         RedemptionDTO redemption = new RedemptionDTO();
         redemption.setRedState(redState);

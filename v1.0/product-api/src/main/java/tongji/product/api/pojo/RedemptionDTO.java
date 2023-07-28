@@ -18,7 +18,7 @@ public class RedemptionDTO {
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date redDate;
     @NotBlank
-    private int redShare;
+    private float redShare;
     @NotBlank
     private String redCardNumber;
 
@@ -37,8 +37,8 @@ public class RedemptionDTO {
     public Date getRedDate() { return redDate; }
     public void setRedDate(Date redDate) { this.redDate = redDate; }
 
-    public int getRedShare() { return redShare; }
-    public void setRedShare(int redShare) { this.redShare = redShare; }
+    public float getRedShare() { return redShare; }
+    public void setRedShare(float redShare) { this.redShare = redShare; }
 
     public String getRedCardNumber() { return redCardNumber; }
     public void setRedCardNumber(String redCardNumber) { this.redCardNumber = redCardNumber; }
