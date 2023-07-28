@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import tongji.product.api.RedemptionService;
 import tongji.product.api.pojo.RedemptionDTO;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -18,8 +18,8 @@ public class RedemptionController {
 
     @InitBinder
     public void initBinder(final WebDataBinder binder){
-        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        binder.registerCustomEditor(java.util.Date.class, new CustomDateEditor(dateFormat, true));
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
     @RequestMapping(value = "/createRedemption", method = RequestMethod.GET)
@@ -35,7 +35,7 @@ public class RedemptionController {
         redemption.setFundNumber(fundNumber);
         redemption.setCerNumber(cerNumber);
         redemption.setRedAmount(redAmount);
-        java.util.Date redDate = new java.util.Date();
+        Date redDate = new Date();
         redemption.setRedDate(redDate);
         redemption.setRedShare(redShare);
         redemption.setRedCardNumber(redCardNumber);

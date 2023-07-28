@@ -18,7 +18,10 @@ public class CardStatementServiceImpl implements CardStatementService {
     private CardStatementMapper cardStatementMapper;
 
     public String createCardStatement(CardStatementDTO cardStatement){
-        CardStatementDTO existCardStatement = cardStatementMapper.getCardStatement(cardStatement.getCardNumber(), cardStatement.getFundNumber(), (Timestamp) cardStatement.getStateDate());
+        CardStatementDTO existCardStatement = cardStatementMapper.getCardStatement(
+                cardStatement.getCardNumber(),
+                cardStatement.getFundNumber(),
+                cardStatement.getStateDate());
         if(null == existCardStatement){
             cardStatementMapper.addCardStatement(cardStatement);
             return cardStatement.getCardNumber();
