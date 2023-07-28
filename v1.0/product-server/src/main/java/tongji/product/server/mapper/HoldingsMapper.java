@@ -20,4 +20,10 @@ public interface HoldingsMapper {
 
     @Select("SELECT fund_number AS fundNumber, cer_number AS cerNumber, total_share AS totalShare, card_number AS cardNumber FROM investor_holdings WHERE card_number = #{cardNumber} AND cer_number = #{cerNumber}")
     HoldingsDTO getOneHoldings(@Param("cardNumber") String cardNumber, @Param("cerNumber") String cerNumber);
+
+    @Select("SELECT fund_number AS fundNumber, cer_number AS cerNumber, total_share AS totalShare, card_number AS cardNumber FROM investor_holdings " +
+            "WHERE card_number = #{cardNumber} " +
+            "AND cer_number = #{cerNumber} " +
+            "AND fund_number = #{fundNumber}")
+    HoldingsDTO getOnlyHoldings(@Param("cardNumber") String cardNumber, @Param("cerNumber") String cerNumber,@Param("fundNumber") String fundNumber);
 }

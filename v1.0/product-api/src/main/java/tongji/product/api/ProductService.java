@@ -24,6 +24,12 @@ public interface ProductService {
     @CloudFunction("0103")
     String modifyProduct(ProductDTO Product);
 
+    @CloudFunction("0106")
+    String deleteProduct(String fundNumber);
+
+    @CloudFunction("0107")
+    List<ProductDTO>getAllProduct();
+
 
 //>>>>>>> Stashed changes
 }
