@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import tongji.product.api.HoldingsService;
 import tongji.product.api.pojo.HoldingsDTO;
+import tongji.product.api.pojo.ProductDTO;
 import tongji.product.server.mapper.HoldingsMapper;
+import tongji.product.server.mapper.ProductMapper;
 
 import java.util.List;
 @CloudComponent
@@ -13,6 +15,8 @@ public class HoldingsServiceImpl implements HoldingsService {
 
     @Autowired
     private HoldingsMapper holdingsMapper;
+    @Autowired
+    private ProductMapper productMapper;
 
     public String createInvestorHoldings(HoldingsDTO holdings) {
         List<HoldingsDTO> existingHoldings = holdingsMapper.getHoldings(holdings.getCerNumber());
@@ -44,8 +48,12 @@ public class HoldingsServiceImpl implements HoldingsService {
 
     public String checkHoldings(HoldingsDTO holdings){
         HoldingsDTO existShare = holdingsMapper.getOneHoldings(holdings.getCardNumber(),holdings.getCerNumber());
+        ProductDTO existProduct = productMapper.getProduct(holdings.getFundNumber());
         if(null == existShare){
             return "不存在对应银行卡持仓记录";
+        }
+        if(null == existProduct){
+            return "不存在对应基金产品";
         }
         if(existShare.getTotalShare() < holdings.getTotalShare()){
             return "持仓份额小于赎回份额";
