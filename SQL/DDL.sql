@@ -39,28 +39,28 @@ INSERT INTO `fund`.`bank_card` (`bank_name`, `card_number`, `cer_number`, `balan
 -- 基金产品
 INSERT INTO `fund`.`fund_product` (`fund_number`, `fund_name`, `fund_type`, `fund_risk`) VALUES ('11111', '暴富宝', '股票基金', '4');
 INSERT INTO `fund`.`fund_product` (`fund_number`, `fund_name`, `fund_type`, `fund_risk`) VALUES ('22222', '基金宝', '货币基金', '1');
-INSERT INTO `test1`.`fund_product` (`fund_number`, `fund_name`, `fund_type`, `fund_risk`) VALUES ('33333', '混合宝', '混合基金', '3');
-INSERT INTO `test1`.`fund_product` (`fund_number`, `fund_name`, `fund_type`, `fund_risk`) VALUES ('44444', '债券宝', '债券基金', '2');
-INSERT INTO `test1`.`fund_product` (`fund_number`, `fund_name`, `fund_type`, `fund_risk`) VALUES ('55555', '基金宝2', '货币基金', '1');
-INSERT INTO `test1`.`fund_product` (`fund_number`, `fund_name`, `fund_type`, `fund_risk`) VALUES ('66666', '暴富宝2', '货币基金', '4');
-INSERT INTO `test1`.`fund_product` (`fund_number`, `fund_name`, `fund_type`, `fund_risk`) VALUES ('77777', '混合宝2', '混合基金', '3');
-INSERT INTO `test1`.`fund_product` (`fund_number`, `fund_name`, `fund_type`, `fund_risk`) VALUES ('88888', '债券宝2', '债券基金', '2');
+INSERT INTO `fund`.`fund_product` (`fund_number`, `fund_name`, `fund_type`, `fund_risk`) VALUES ('33333', '混合宝', '混合基金', '3');
+INSERT INTO `fund`.`fund_product` (`fund_number`, `fund_name`, `fund_type`, `fund_risk`) VALUES ('44444', '债券宝', '债券基金', '2');
+INSERT INTO `fund`.`fund_product` (`fund_number`, `fund_name`, `fund_type`, `fund_risk`) VALUES ('55555', '基金宝2', '货币基金', '1');
+INSERT INTO `fund`.`fund_product` (`fund_number`, `fund_name`, `fund_type`, `fund_risk`) VALUES ('66666', '暴富宝2', '货币基金', '4');
+INSERT INTO `fund`.`fund_product` (`fund_number`, `fund_name`, `fund_type`, `fund_risk`) VALUES ('77777', '混合宝2', '混合基金', '3');
+INSERT INTO `fund`.`fund_product` (`fund_number`, `fund_name`, `fund_type`, `fund_risk`) VALUES ('88888', '债券宝2', '债券基金', '2');
 
 -- 银行卡账单
 INSERT INTO `fund`.`card_statement` (`card_number`, `state_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('8888 8888 8888 8888', '2023-07-27 12:00:00', '11', '22222', '1011');
-INSERT INTO `fund`.`card_statement` (`card_number`, `start_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('8888 8888 8888 8888', '2023-07-28 12:10:00', '-11', '33333', '1000');
-INSERT INTO `fund`.`card_statement` (`card_number`, `start_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('8888 8888 8888 8888', '2023-07-28 12:25:00', '1.1', '44444', '1001.1');
-INSERT INTO `fund`.`card_statement` (`card_number`, `start_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('8888 8888 8888 8888', '2023-07-28 12:00:00', '-901.1', '55555', '100.0');
-INSERT INTO `fund`.`card_statement` (`card_number`, `start_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-06-28 12:00:00', '11', '22222', '11.1');
-INSERT INTO `fund`.`card_statement` (`card_number`, `start_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-06-29 00:00:00', '12', '22222', '23.1');
-INSERT INTO `fund`.`card_statement` (`card_number`, `start_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-06-30 10:00:43', '13', '55555', '36.1');
-INSERT INTO `fund`.`card_statement` (`card_number`, `start_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-07-01 15:23:00', '14', '22222', '50.1');
-INSERT INTO `fund`.`card_statement` (`card_number`, `start_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-07-02 00:00:00', '15', '88888', '65.1');
-INSERT INTO `fund`.`card_statement` (`card_number`, `start_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-07-03 00:56:00', '16', '22222', '81.1');
-INSERT INTO `fund`.`card_statement` (`card_number`, `start_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-07-04 00:00:00', '17', '11111', '98.1');
-INSERT INTO `fund`.`card_statement` (`card_number`, `start_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-07-05 00:13:00', '18', '22222', '116.1');
-INSERT INTO `fund`.`card_statement` (`card_number`, `start_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-07-06 00:00:59', '19', '44444', '135.1');
-INSERT INTO `fund`.`card_statement` (`card_number`, `start_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-07-07 15:00:17', '-55.1', '22222', '100');
+INSERT INTO `fund`.`card_statement` (`card_number`, `state_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('8888 8888 8888 8888', '2023-07-28 12:10:00', '-11', '33333', '1000');
+INSERT INTO `fund`.`card_statement` (`card_number`, `state_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('8888 8888 8888 8888', '2023-07-28 12:25:00', '1.1', '44444', '1001.1');
+INSERT INTO `fund`.`card_statement` (`card_number`, `state_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('8888 8888 8888 8888', '2023-07-28 12:00:00', '-901.1', '55555', '100.0');
+INSERT INTO `fund`.`card_statement` (`card_number`, `state_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-06-28 12:00:00', '11', '22222', '11.1');
+INSERT INTO `fund`.`card_statement` (`card_number`, `state_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-06-29 00:00:00', '12', '22222', '23.1');
+INSERT INTO `fund`.`card_statement` (`card_number`, `state_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-06-30 10:00:43', '13', '55555', '36.1');
+INSERT INTO `fund`.`card_statement` (`card_number`, `state_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-07-01 15:23:00', '14', '22222', '50.1');
+INSERT INTO `fund`.`card_statement` (`card_number`, `state_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-07-02 00:00:00', '15', '88888', '65.1');
+INSERT INTO `fund`.`card_statement` (`card_number`, `state_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-07-03 00:56:00', '16', '22222', '81.1');
+INSERT INTO `fund`.`card_statement` (`card_number`, `state_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-07-04 00:00:00', '17', '11111', '98.1');
+INSERT INTO `fund`.`card_statement` (`card_number`, `state_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-07-05 00:13:00', '18', '22222', '116.1');
+INSERT INTO `fund`.`card_statement` (`card_number`, `state_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-07-06 00:00:59', '19', '44444', '135.1');
+INSERT INTO `fund`.`card_statement` (`card_number`, `state_date`, `state_amount`, `fund_number`, `sta_balance`) VALUES ('1111 1111 1111 1111', '2023-07-07 15:00:17', '-55.1', '22222', '100');
 
 -- Fund 22222
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('22222', '2023-07-01', '1.23');
@@ -325,13 +325,6 @@ INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALU
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('88888', '2023-07-29', '1.50');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('88888', '2023-07-30', '1.60');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('88888', '2023-07-31', '1.62');
-
-
-INSERT INTO `fund`.`invester` (`user_type`, `user_name`, `cer_type`, `cer_number`, `risk_grade`) VALUES ('个人', '王大卫',   '身份证', '310101ppppqqqqrrrr', '3');
-INSERT INTO `fund`.`invester` (`user_type`, `user_name`, `cer_type`, `cer_number`, `risk_grade`) VALUES ('公司', 'aaa',     '公司证件', '12345', '1');
-INSERT INTO `fund`.`invester` (`user_type`, `user_name`, `cer_type`, `cer_number`, `risk_grade`) VALUES ('个人', '同济葛蕾', '身份证', '310101666666666666', '2');
-INSERT INTO `fund`.`invester` (`user_type`, `user_name`, `cer_type`, `cer_number`, `risk_grade`) VALUES ('个人', '小明',   '身份证', '310101hhhhjjjjkkkk', '5');
-INSERT INTO `fund`.`invester` (`user_type`, `user_name`, `cer_type`, `cer_number`, `risk_grade`) VALUES ('公司', '同济大学', '公司证件', 'abcde', '4');
 
 
 INSERT INTO `fund`.`subscription` (`sub_state`, `fund_number`, `cer_number`, `sub_amount`, `sub_date`, `sub_share`, `sub_card_number`) VALUES ('待确认', '11111', '12345', '10', '2023-07-01', '10', '9999 9999 9999 9999');
