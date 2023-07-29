@@ -271,7 +271,7 @@ balance 余额<br>
 
 ### 银行卡流水
 
-13.  创建流水信息 方法: **POST**
+13.  创建流水信息 方法: **POST**<br>
 card_number 卡号<br>
 state_amount 交易金额<br>
 fund_number 基金代码<br>
@@ -287,7 +287,7 @@ sta_balance 交易后卡内余额<br>
 8888 8888 8888 8888
 ```
 
-14.  以基金为关键字获取流水 方法: **GET**
+14.  以基金为关键字获取流水 方法: **GET**<br>
 card_number 卡号<br>
 fund_number 基金代码<br>
 示例:
@@ -318,7 +318,7 @@ fund_number 基金代码<br>
 
 ### 投资者相关
 
-15.   创建投资者 方法: **POST**
+15.   创建投资者 方法: **POST**<br>
 
 user_type 用户类型<br>
 user_name 用户姓名<br>
@@ -336,7 +336,7 @@ risk_grade 风险等级<br>
 310101xxxxyyyyzzzz
 ```
 
-16.   获取某个投资者 方法: **GET**
+16.   获取某个投资者 方法: **GET**<br>
 
 cer_number 证件号<br>
 示例:
@@ -390,3 +390,181 @@ cer_number 证件号<br>
     }
 ]
 ```
+
+### 申购相关
+
+18. 查询投资者信息和其所有银行卡，方法：GET
+
+cer_number  投资者证件号  53012420020609<br>
+
+示例：
+```
+127.0.0.1:9091/getInvesterAndCards?cer_number=53012420020609
+```
+
+返回类型: ResponseEntity< InvesterAndBankCardDTO > (json)<br>
+返回内容: 投资者信息和其所有银行卡<br>
+返回示例:
+```
+{
+    "invester": {
+        "userType": "投资",
+        "userName": "张三",
+        "cerType": "身份证",
+        "cerNumber": "53012420020609",
+        "riskGrade": 2
+    },
+    "bankCards": [
+        {
+            "bankName": "农行",
+            "cardNumber": "10081",
+            "cerNumber": "53012420020609",
+            "balance": 110.0
+        },
+        {
+            "bankName": "建行",
+            "cardNumber": "10082",
+            "cerNumber": "53012420020609",
+            "balance": 2274.0
+        }
+    ]
+}
+```
+
+
+   
+19. 申购基金，方法：POST
+fund_number  基金编号  001<br>
+cer_number 投资者证件号码 53012420020609<br>
+sub_card_number 申购基金所用银行卡卡号 10082<br>
+sub_amount 申购金额<br>
+
+
+示例：
+```
+127.0.0.1:9091/createSubscription?fund_number=001&sub_card_number=10082& cer_number=53012420020609&sub_amount=36
+
+```
+返回类型: String<br>
+返回内容: 成功为用户xxx申购xxx基金<br>
+返回示例:
+```
+成功为用户53012420020609申购001基金
+```
+
+
+      
+20. 清算申购，方法：PATCH
+无参数
+示例：
+```
+127.0.0.1:9091/settlement/sub
+```
+返回类型: String<br>
+返回内容: 错误信息或清算完成<br>
+返回示例:
+```
+清算完成
+```
+
+
+   
+21. 更新日期,方法：GET
+示例：
+```
+127.0.0.1:9091/updateTime
+```
+返回类型: String<br>
+返回内容: OK<br>
+返回示例:
+```
+OK
+```
+
+22. 通过名字模糊搜索客户，方法：GET
+key  搜索值  张<br>
+示例：
+```
+127.0.0.1:9091//search/invester/name?key=张
+```
+返回类型: List< InvesterDTO > <br>
+返回内容: 名字中含有key的所有用户<br>
+返回示例:
+```
+[
+    {
+        "userType": "投资",
+        "userName": "张三",
+        "cerType": "身份证",
+        "cerNumber": "53012420020608",
+        "riskGrade": 2
+    },
+    {
+        "userType": "投资",
+        "userName": "张三",
+        "cerType": "身份证",
+        "cerNumber": "53012420020609",
+        "riskGrade": 2
+    }
+]
+```
+
+23. 通过证件号码模糊搜索用户
+key  搜索值  530<br>
+示例: 
+```
+127.0.0.1:9091//search/invester/number?key=530
+```
+返回类型: List< InvesterDTO><br>
+返回内容: 证件号码中含有搜索值的全部客户<br>
+返回示例: 
+```
+[
+    {
+        "userType": "投资",
+        "userName": "张三",
+        "cerType": "身份证",
+        "cerNumber": "53012420020608",
+        "riskGrade": 2
+    },
+    {
+        "userType": "投资",
+        "userName": "张三",
+        "cerType": "身份证",
+        "cerNumber": "53012420020609",
+        "riskGrade": 2
+    }
+]
+```
+
+24. 赎回基金，方法：POST
+fund_number 基金编号 001<br>
+cer_number 投资者证件号码 53012420020609<br>
+red_card_number 申购基金所用银行卡卡号 10082<br>
+red_share 赎回份额 10<br>
+
+示例:
+```
+127.0.0.1:9091/createRedemption?red_card_number=10082&cer_number=53012420020609&fund_number=001&red_share=10
+```
+返回类型: String<br>
+返回内容: 赎回状态<br>
+返回示例:
+```
+OK: 53012420020609
+```
+25. 清算赎回，方法：PATCH
+无参数
+
+示例:
+```
+127.0.0.1:9091//settlement/red
+```
+返回类型：String<br>
+返回内容：清算状态<br>
+返回示例：
+```
+清算完成
+```
+
+### 
