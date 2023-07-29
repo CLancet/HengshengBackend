@@ -92,6 +92,11 @@ public class ProductController {
         return dailyValueService.getDailyValue(fundNumber/*, date*/);
     }
 
+    @RequestMapping(path ="/getDailValueByDate",method = RequestMethod.GET)
+    public List<DailyValueDTO> getDailyValueByDate(@RequestParam(value = "fundDate")Date fundDate){
+        return dailyValueService.getDailyValueByDate(fundDate);
+    }
+
     @RequestMapping(path = "/getAllProduct",method = RequestMethod.GET)
     public  List<ProductDTO>getAllProduct(){
         return productService.getAllProduct();

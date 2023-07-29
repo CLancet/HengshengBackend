@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import tongji.product.api.DailyValueService;
 import tongji.product.api.ProductService;
+import tongji.product.api.pojo.DailyValueChanges;
 import tongji.product.api.pojo.DailyValueDTO;
 import tongji.product.api.pojo.ProductDTO;
 import tongji.product.api.pojo.SubscriptionDTO;
@@ -45,6 +46,10 @@ public class DailyValueServiceImpl implements DailyValueService {
         Assert.hasLength(fundNumber, "缺少查询的基金代码");
         /*Assert.hasLength(String.valueOf(date), "缺少查询的日期");*/
         return dailyValueMapper.getDailyValue(fundNumber/*, date*/);
+    }
+
+    public List<DailyValueDTO>getDailyValueByDate(Date date){
+         return dailyValueMapper.getDailyValueByDate(date);
     }
 
     public DailyValueDTO getOneDailyValue(String fundNumber, Date fundDate) {
