@@ -23,7 +23,7 @@ public class CardStatementController {
         binder.registerCustomEditor(java.util.Date.class, new CustomDateEditor(dateFormat, true));
     }
 
-    @RequestMapping(value = "/createCardStatement", method = RequestMethod.GET)
+    @RequestMapping(value = "/createCardStatement", method = RequestMethod.POST)
     public String createCardStatement(@RequestParam(value = "card_number") String cardNumber,
 //                                    @RequestParam(value = "state_date") Timestamp stateDate,
                                     @RequestParam(value = "state_amount") float stateAmount,

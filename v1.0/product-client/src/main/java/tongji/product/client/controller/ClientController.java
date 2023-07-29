@@ -50,7 +50,7 @@ public class ClientController {
         return bankCardService.getOneBankCard(cardNumber, cerNumber);
     }
 
-    @RequestMapping(path = "/addBankCard", method = RequestMethod.GET)
+    @RequestMapping(path = "/addBankCard", method = RequestMethod.POST)
     public String addBankCard(@RequestParam(value = "card_number") String cardNumber,
                               @RequestParam(value = "cer_number") String cerNumber,
                               @RequestParam(value = "bank_name") String bankName,
@@ -63,11 +63,11 @@ public class ClientController {
         return bankCardService.addBankCard(card);
     }
 
-    @RequestMapping(path = "/deleteBankCard", method = RequestMethod.GET)
+    @RequestMapping(path = "/deleteBankCard", method = RequestMethod.DELETE)
     public String deleteBankCard(@RequestParam(value = "card_number") String cardNumber,
                                  @RequestParam(value = "cer_number") String cerNumber,
-                                 @RequestParam(value = "bank_name") String bankName,
-                                 @RequestParam(value = "balance") float balance){
+                                 @RequestParam(value = "bank_name",required = false) String bankName,
+                                 @RequestParam(value = "balance",required = false) float balance){
         BankCardDTO card = new BankCardDTO();
         card.setBalance(balance);
         card.setBankName(bankName);
@@ -76,7 +76,7 @@ public class ClientController {
         return bankCardService.removeBankCard(card);
     }
 
-    @RequestMapping(path = "/modifyBankCard", method = RequestMethod.GET)
+    @RequestMapping(path = "/modifyBankCard", method = RequestMethod.PATCH)
     public String modifyBankCard(@RequestParam(value = "card_number") String cardNumber,
                                  @RequestParam(value = "cer_number") String cerNumber,
                                  @RequestParam(value = "bank_name") String bankName,
@@ -90,7 +90,7 @@ public class ClientController {
     }
 
 
-    @RequestMapping(value = "/createInvester",method = RequestMethod.GET)
+    @RequestMapping(value = "/createInvester",method = RequestMethod.POST)
     public String createInvester(@RequestParam(value = "user_type") String userType,
                                  @RequestParam(value = "user_name") String userName,
                                  @RequestParam(value = "cer_type") String cerType,
