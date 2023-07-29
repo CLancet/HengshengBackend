@@ -54,6 +54,9 @@ public class SettlementServiceImpl implements SettlementService {
 
                 Date formattedDate = sdf.parse(subDateString);
                 DailyValueDTO  dailyValue = dailyValueMapper.getOneDailyValue(fundNumber,formattedDate);//此处时间转换有问题
+                if(dailyValue == null){
+                    continue;
+                }
                 Float fundValue = dailyValue.getFundValue();//根据申购日期和基金代码查找当天该基金的净值
                 if (fundValue == 0 || Math.abs(fundValue) < 0.000001) {
                     // 给fundValue一个合理的默认值，例如1

@@ -8,7 +8,7 @@ public class SettlementDTO {
     private Date[] dates;
     private boolean hasBefore;
 
-    SettlementDTO(){
+    public SettlementDTO(){
         ptr = 0;
         hasBefore = false;
 
@@ -16,7 +16,7 @@ public class SettlementDTO {
         dates[0] = new Date();
     }
 
-    SettlementDTO(Date nowDate){
+    public SettlementDTO(Date nowDate){
         ptr = 0;
         hasBefore = false;
 

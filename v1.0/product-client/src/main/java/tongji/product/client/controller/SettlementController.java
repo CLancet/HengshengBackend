@@ -7,7 +7,7 @@ import tongji.product.api.pojo.SettlementDTO;
 
 @RestController
 public class SettlementController {
-    private SettlementDTO settlementDTO;
+    private SettlementDTO settlementDTO = new SettlementDTO();
 
     @RequestMapping(value = "/updateTime", method = RequestMethod.GET)
     String updateSystemTime(){

@@ -35,7 +35,6 @@ public class RedemptionController {
     public String createRedemption(@RequestParam(value = "red_state", required = false) String redState,
                                    @RequestParam(value = "fund_number", required = true) String fundNumber,
                                    @RequestParam(value = "cer_number", required = true) String cerNumber,
-                                   @RequestParam(value = "red_amount", required = false) float redAmount,
                                    /*@RequestParam(value = "red_date", required = true) Date redDate,*/
                                    @RequestParam(value = "red_share", required = true) float redShare,
                                    @RequestParam(value = "red_card_number", required = true) String redCardNumber) {
@@ -43,7 +42,7 @@ public class RedemptionController {
         redemption.setRedState((redState == null? "待确认":redState));
         redemption.setFundNumber(fundNumber);
         redemption.setCerNumber(cerNumber);
-        redemption.setRedAmount(redAmount);
+        //redemption.setRedAmount(redAmount);
         Date redDate = new Date();
         System.out.println(redDate);
         redemption.setRedDate(redDate);
