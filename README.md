@@ -248,7 +248,7 @@ balance 余额<br>
 
 ### 银行卡流水
 
-13.  创建流水信息 方法: **POST**
+13.  创建流水信息 方法: **POST**<br>
 card_number 卡号<br>
 state_amount 交易金额<br>
 fund_number 基金代码<br>
@@ -295,7 +295,7 @@ fund_number 基金代码<br>
 
 ### 投资者相关
 
-15.   创建投资者 方法: **POST**
+15.   创建投资者 方法: **POST**<br>
 
 user_type 用户类型<br>
 user_name 用户姓名<br>
@@ -313,7 +313,7 @@ risk_grade 风险等级<br>
 310101xxxxyyyyzzzz
 ```
 
-16.   获取某个投资者 方法: **GET**
+16.   获取某个投资者 方法: **GET**<br>
 
 cer_number 证件号<br>
 示例:
