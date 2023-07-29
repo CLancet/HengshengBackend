@@ -1,15 +1,9 @@
 
 .idea/*
-v1.0/product-server/target/classes/application.properties
 v1.0/product-server/src/main/resources/application.properties
-v1.0/product-server/src/main/resources/application.properties
-v1.0/product-server/target/classes/application.properties
-v1.0/product-server/target/classes/application.properties
-v1.0/product-server/src/main/resources/application.properties
-v1.0/product-server/src/main/resources/application.properties
-v1.0/product-server/src/main/resources/application.properties
-v1.0/product-server/src/main/resources/application.properties
+*.class
 
-v1.0/product-server/src/main/resources/application.properties
-*.class
-*.class
+v1.0/product-server/target/*
+v1.0/product-api/target/*
+v1.0/product-client/target/*
+

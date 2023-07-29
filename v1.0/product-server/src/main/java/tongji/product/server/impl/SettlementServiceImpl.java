@@ -28,6 +28,8 @@ public class SettlementServiceImpl implements SettlementService {
     private RedemptionMapper redemptionMapper;
     @Autowired
     private BankCardMapper bankCardMapper;
+    @Autowired
+    private CardStatementMapper cardStatementMapper;
 
     public List<SubscriptionDTO> getUnsettledSubscriptions() {
         List<SubscriptionDTO> subscriptions = subscriptionMapper.getUnsettledSubscriptions();
@@ -139,6 +141,7 @@ public class SettlementServiceImpl implements SettlementService {
             cardStatement.setCardNumber(redemption.getRedCardNumber());
             cardStatement.setStateAmount(redemption.getRedAmount());
             cardStatement.setStaBalance(bankCard.getBalance());
+            cardStatementMapper.addCardStatement(cardStatement);
         }
         return "清算完成";
     }
