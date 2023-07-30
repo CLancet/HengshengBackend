@@ -150,26 +150,45 @@ fund_Date 查询日期 2023-07-28<br>
 ```
 127.0.0.1:9091/getDailyValueByDate?fund_date=2023-07-28
 ```
-返回类型：List < DailyValueDTO><br>
+返回类型：List \<DailyValueChanges\><br>
 返回内容：该日期的所有日净值信息<br>
 返回示例：
 ```
 [
     {
-        "fundNumber": "22222",
-        "fundValue": 1.0,
-        "fundDate": "2021-01-01"
+        "fundName": "血妈转",
+        "dailyValue": {
+            "fundNumber": "11111",
+            "fundValue": 0.97,
+            "fundDate": "2023-07-31"
+        }
     },
     {
-        "fundNumber": "22222",
-        "fundValue": 1.2,
-        "fundDate": "2021-01-02"
+        "fundName": "亏损宝",
+        "dailyValue": {
+            "fundNumber": "22222",
+            "fundValue": 1.06,
+            "fundDate": "2023-07-31"
+        }
     }
 ]
 ```
 
+9.  更新日净值 方法：**GET**
+（无参数）
+示例：
+```
+127.0.0.1:9091/updateDailyValue
+```
+返回类型：String
+放回内容：完成日净值更新
+返回示例：
+```
+完成日净值更新
+```
+
 ### 银行卡
-8. 获取某用户所有银行卡 方法: **GET**<br>
+10. 获取某用户所有银行卡 方法: **GET**<br>
 
 cer_number 客户证件号 310101xxxxyyyyzzzz<br>
 示例: 
@@ -201,7 +220,7 @@ cer_number 客户证件号 310101xxxxyyyyzzzz<br>
     }
 ]
 ```
-9. 获取一张银行卡 方法: **GET**<br>
+11. 获取一张银行卡 方法: **GET**<br>
 
 card_number 银行卡号<br>
 cer_number 证件号<br>
@@ -221,7 +240,7 @@ cer_number 证件号<br>
 }
 ```
 
-10.  添加银行卡 方法: **POST**
+12.  添加银行卡 方法: **POST**
 
 card_number 卡号<br>
 cer_number 证件号<br>
@@ -238,7 +257,7 @@ balance 余额<br>
 8888 8888 8888 8888
 ```
 
-11. 删除银行卡 方法: **DELETE**
+13. 删除银行卡 方法: **DELETE**
 
 card_number 卡号<br>
 cer_number 证件号<br>
@@ -253,7 +272,7 @@ cer_number 证件号<br>
 8888 8888 8888 8888
 ```
 
-12.  更改银行卡 方法: **PATCH**
+14.  更改银行卡 方法: **PATCH**
 card_number 卡号<br>
 cer_number 证件号<br>
 bank_name 银行名字<br>
@@ -271,7 +290,7 @@ balance 余额<br>
 
 ### 银行卡流水
 
-13.  创建流水信息 方法: **POST**<br>
+15.  创建流水信息 方法: **POST**<br>
 card_number 卡号<br>
 state_amount 交易金额<br>
 fund_number 基金代码<br>
@@ -287,7 +306,7 @@ sta_balance 交易后卡内余额<br>
 8888 8888 8888 8888
 ```
 
-14.  以基金为关键字获取流水 方法: **GET**<br>
+16.  以基金为关键字获取流水 方法: **GET**<br>
 card_number 卡号<br>
 fund_number 基金代码<br>
 示例:
@@ -318,7 +337,7 @@ fund_number 基金代码<br>
 
 ### 投资者相关
 
-15.   创建投资者 方法: **POST**<br>
+17.   创建投资者 方法: **POST**<br>
 
 user_type 用户类型<br>
 user_name 用户姓名<br>
@@ -336,7 +355,7 @@ risk_grade 风险等级<br>
 310101xxxxyyyyzzzz
 ```
 
-16.   获取某个投资者 方法: **GET**<br>
+18.   获取某个投资者 方法: **GET**<br>
 
 cer_number 证件号<br>
 示例:
@@ -356,7 +375,7 @@ cer_number 证件号<br>
 }
 ```
 
-17.   获取所有投资者 方法: **GET** 
+19.   获取所有投资者 方法: **GET** 
 (无参数)<br>
 示例:
 ```
@@ -393,7 +412,7 @@ cer_number 证件号<br>
 
 ### 申购相关
 
-18. 查询投资者信息和其所有银行卡，方法：GET
+20. 查询投资者信息和其所有银行卡，方法：GET
 
 cer_number  投资者证件号  53012420020609<br>
 
@@ -433,7 +452,7 @@ cer_number  投资者证件号  53012420020609<br>
 
 
    
-19. 申购基金，方法：POST
+21. 申购基金，方法：POST
 fund_number  基金编号  001<br>
 cer_number 投资者证件号码 53012420020609<br>
 sub_card_number 申购基金所用银行卡卡号 10082<br>
@@ -454,7 +473,7 @@ sub_amount 申购金额<br>
 
 
       
-20. 清算申购，方法：PATCH
+22. 清算申购，方法：PATCH
 无参数
 示例：
 ```
@@ -469,7 +488,7 @@ sub_amount 申购金额<br>
 
 
    
-21. 更新日期,方法：GET
+23. 更新日期,方法：GET
 示例：
 ```
 127.0.0.1:9091/updateTime
@@ -481,7 +500,7 @@ sub_amount 申购金额<br>
 OK
 ```
 
-22. 通过名字模糊搜索客户，方法：GET
+24. 通过名字模糊搜索客户，方法：GET
 key  搜索值  张<br>
 示例：
 ```
@@ -509,7 +528,7 @@ key  搜索值  张<br>
 ]
 ```
 
-23. 通过证件号码模糊搜索用户
+25. 通过证件号码模糊搜索用户
 key  搜索值  530<br>
 示例: 
 ```
@@ -537,7 +556,7 @@ key  搜索值  530<br>
 ]
 ```
 
-24. 赎回基金，方法：POST
+26. 赎回基金，方法：POST
 fund_number 基金编号 001<br>
 cer_number 投资者证件号码 53012420020609<br>
 red_card_number 申购基金所用银行卡卡号 10082<br>
@@ -553,7 +572,7 @@ red_share 赎回份额 10<br>
 ```
 OK: 53012420020609
 ```
-25. 清算赎回，方法：PATCH
+27. 清算赎回，方法：PATCH
 无参数
 
 示例:

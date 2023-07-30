@@ -14,7 +14,10 @@ import tongji.product.api.pojo.SubscriptionDTO;
 import tongji.product.server.mapper.DailyValueMapper;
 import tongji.product.server.mapper.ProductMapper;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @CloudComponent
@@ -48,8 +51,28 @@ public class DailyValueServiceImpl implements DailyValueService {
         return dailyValueMapper.getDailyValue(fundNumber/*, date*/);
     }
 
-    public List<DailyValueDTO>getDailyValueByDate(Date date){
-         return dailyValueMapper.getDailyValueByDate(date);
+    public List<DailyValueChanges>getDailyValueByDate(Date date){
+        // 获取净值与产品列表
+        List<DailyValueDTO> dailyValueByDate = dailyValueMapper.getDailyValueByDate(date);
+        List<ProductDTO> allProduct = productMapper.getAllProduct();
+
+        // 创建更改数组
+        List<DailyValueChanges> changes = new LinkedList<DailyValueChanges>();
+
+        for(DailyValueDTO value : dailyValueByDate){
+            for(ProductDTO product : allProduct){
+                if(product.getFundNumber().equals(value.getFundNumber())){
+                    // 相同，生成change对象，压入change的list，循环结束
+                    DailyValueChanges dailyValueChanges = new DailyValueChanges();
+                    dailyValueChanges.setDailyValue(value);
+                    dailyValueChanges.setFundName(product.getFundName());
+                    changes.add(dailyValueChanges);
+                    break;
+                }
+            }
+        }
+
+        return changes;
     }
 
     public DailyValueDTO getOneDailyValue(String fundNumber, Date fundDate) {
@@ -59,26 +82,48 @@ public class DailyValueServiceImpl implements DailyValueService {
     }
 
     public  String updateAllDailyValue(Date currentDate,Date lastDate){
-        List<ProductDTO> products = productMapper.getAllProduct();
-        for(ProductDTO product :products){
-            DailyValueDTO dailyValue = new DailyValueDTO();
-            String fundNumber = product.getFundNumber();
-            DailyValueDTO lastDailyValue = dailyValueMapper.getOneDailyValue(fundNumber,lastDate);
-            Float lastValue;
-            if(lastDailyValue ==null){
-               lastValue = 1.0f;
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String lastDateString = dateFormat.format(lastDate);
+            String curDateString = dateFormat.format(currentDate);
+
+            Date formattedLastDate = dateFormat.parse(lastDateString);
+            Date formattedCurDate = dateFormat.parse(curDateString);
+
+            List<ProductDTO> products = productMapper.getAllProduct();
+            for(ProductDTO product :products){
+                DailyValueDTO dailyValue = new DailyValueDTO();
+                String fundNumber = product.getFundNumber();
+                DailyValueDTO lastDailyValue = dailyValueMapper.getOneDailyValue(fundNumber,formattedLastDate);
+                Float lastValue;
+                if(lastDailyValue ==null){
+                    lastValue = 1.0f;
+                }
+                else{
+                    lastValue = lastDailyValue.getFundValue();
+                }
+                Double num = 0.9 + Math.random() * 0.2;
+
+                Float newFundValue =lastValue *num.floatValue();
+                dailyValue.setFundValue(newFundValue);
+                dailyValue.setFundNumber(fundNumber);
+                dailyValue.setFundDate(currentDate);
+
+
+                DailyValueDTO existDailyValue = dailyValueMapper.getOneDailyValue(fundNumber, formattedCurDate);
+                if(null == existDailyValue){
+                    dailyValueMapper.createDailyValue(dailyValue);
+                } else {
+                    existDailyValue.setFundValue(newFundValue);
+                    dailyValueMapper.updateDailyValue(existDailyValue);
+                }
             }
-            else{
-                lastValue = lastDailyValue.getFundValue();
-            }
-            Double num = 0.9 + Math.random() * 0.2;
-            Float newFundValue =lastValue *num.floatValue();
-            dailyValue.setFundValue(newFundValue);
-            dailyValue.setFundNumber(fundNumber);
-            dailyValue.setFundDate(currentDate);
-            dailyValueMapper.createDailyValue(dailyValue);
+            return "完成日净值更新";
+        } catch(Exception e) {
+            System.out.println(e.toString());
         }
-        return "完成日净值更新";
+        return "出现问题";
+
     }
 
 }
