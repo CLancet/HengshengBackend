@@ -15,7 +15,7 @@ import tongji.product.api.pojo.ProductDTO;
 
 import java.sql.Date;
 //>>>>>>> Stashed changes
-
+@CrossOrigin(origins = "http://localhost:8000")
 @RestController
 public class ClientController {
 

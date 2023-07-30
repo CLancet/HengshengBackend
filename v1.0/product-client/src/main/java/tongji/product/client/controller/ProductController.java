@@ -4,12 +4,15 @@ import com.hundsun.jrescloud.rpc.annotation.CloudFunction;
 import com.hundsun.jrescloud.rpc.annotation.CloudReference;
 import com.hundsun.jrescloud.rpc.annotation.CloudService;
 import com.sun.xml.internal.ws.fault.ServerSOAPFaultException;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 //<<<<<<< Updated upstream
 import tongji.product.api.*;
 import tongji.product.api.pojo.*;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import tongji.product.api.pojo.ProductDTO;
 import java.sql.Date;
@@ -29,6 +32,13 @@ public class ProductController {
 
     @CloudReference
     private InvesterService investerService;
+
+    @InitBinder
+    public void initBinder(final WebDataBinder binder){
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        binder.registerCustomEditor(java.util.Date.class, new CustomDateEditor(dateFormat, true));
+    }
+
     @RequestMapping(value = "/createProduct", method = RequestMethod.POST)
     public String createProduct(@RequestParam(value = "fund_number", required = false) String fundNumber,
                                 @RequestParam(value = "fund_name") String fundName,
@@ -92,8 +102,8 @@ public class ProductController {
         return dailyValueService.getDailyValue(fundNumber/*, date*/);
     }
 
-    @RequestMapping(path ="/getDailValueByDate",method = RequestMethod.GET)
-    public List<DailyValueDTO> getDailyValueByDate(@RequestParam(value = "fundDate")Date fundDate){
+    @RequestMapping(path ="/getDailyValueByDate",method = RequestMethod.GET)
+    public List<DailyValueDTO> getDailyValueByDate(@RequestParam(value = "fund_date")java.util.Date fundDate){
         return dailyValueService.getDailyValueByDate(fundDate);
     }
 

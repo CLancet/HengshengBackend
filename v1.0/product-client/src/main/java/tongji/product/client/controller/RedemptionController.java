@@ -14,6 +14,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:8000")
 @RestController
 public class RedemptionController {
     @CloudReference
