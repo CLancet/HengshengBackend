@@ -410,6 +410,41 @@ cer_number 证件号<br>
 ]
 ```
 
+20. 删除投资者 方法：DELETE
+cer_number 投资者证件号 530122222xxx<br>
+
+示例：
+```
+127.0.0.1:9091/deleteInvester?cer_number=530122222xxx
+```
+
+返回类型 String
+返回内容 删除状态
+返回示例：
+```
+删除成功
+```
+
+21. 更新投资者 方法：PATCH
+
+userType 用户类型 个人<br>
+user_name 用户名称 同济张<br>
+cer_type 证件类型 身份证<br>
+cer_number 证件号码 11211<br>
+risk_grade 风险等级 5<br>
+
+示例：
+```
+127.0.0.1:9091/modifyInvester?user_type=个人&user_name=同济张&cer_type=身份证&cer_number=11211&risk_grade=5
+```
+
+返回类型 String
+返回内容 更新状态
+返回示例：
+```
+更新成功
+```
+
 ### 申购相关
 
 20. 查询投资者信息和其所有银行卡，方法：GET
