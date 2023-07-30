@@ -26,4 +26,6 @@ public class SettlementController {
     String updateDailyValue(){
         return dailyValueService.updateAllDailyValue(settlementDTO.getNowDate(),settlementDTO.getPreDate());
     }
+
+    
 }

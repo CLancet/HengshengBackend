@@ -12,7 +12,7 @@ public class SettlementDTO {
         ptr = 0;
         hasBefore = false;
 
-        dates = new Date[2];
+        dates = new Date[3];
         dates[0] = new Date();
     }
 
@@ -20,13 +20,13 @@ public class SettlementDTO {
         ptr = 0;
         hasBefore = false;
 
-        dates = new Date[2];
+        dates = new Date[3];
         dates[0] = nowDate;
     }
 
     public void moveToNextDay(){
-        if(!hasBefore){
-            hasBefore =true;
+        if(!hasBefore && ptr == 1){
+            hasBefore = true;
         }
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dates[ptr]);
@@ -41,7 +41,7 @@ public class SettlementDTO {
             }
         }
         ptr += 1;
-        ptr %= 2;
+        ptr %= 3;
         dates[ptr] = calendar.getTime();
     }
 
@@ -50,8 +50,14 @@ public class SettlementDTO {
     }
 
     public Date getPreDate(){
-        if (!hasBefore)
+        if (!hasBefore && ptr == 0)
             return null;
-        return dates[(ptr+1)%2];
+        return dates[(ptr+1)%3];
+    }
+
+    public Date getTheDayBeforePreDate(){
+        if(!hasBefore && ptr == 1)
+            return null;
+        return dates[(ptr+2)%3];
     }
 }
