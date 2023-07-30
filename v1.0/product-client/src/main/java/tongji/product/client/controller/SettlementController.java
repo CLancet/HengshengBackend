@@ -31,10 +31,19 @@ public class SettlementController {
         return settlementDTO.getNowDate();
     }
 
+    @RequestMapping(value = "/getYesterday", method = RequestMethod.GET)
+    Date getYesterday(){
+        return settlementDTO.getPreDate();
+    }
+
+    @RequestMapping(value = "/getPreYesterday", method = RequestMethod.GET)
+    Date getPreYesterday(){
+        return settlementDTO.getTheDayBeforePreDate();
+    }
+
     @RequestMapping(value = "/updateDailyValue",method = RequestMethod.GET)
     String updateDailyValue(){
-        return dailyValueService.updateAllDailyValue(settlementDTO.getNowDate(),settlementDTO.getPreDate());
-
+        return dailyValueService.updateAllDailyValue(settlementDTO.getPreDate(),settlementDTO.getTheDayBeforePreDate());
     }
 
     
