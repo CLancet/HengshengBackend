@@ -1,20 +1,67 @@
--- CREATE TABLE `test1`.`subscription` (
---  `sub_state` VARCHAR(20) NULL DEFAULT '待确认',
---  `fund_number` VARCHAR(20) NOT NULL,
---  `cer_number` VARCHAR(20) NOT NULL,
---  `sub_amount` DECIMAL(13,2) NOT NULL,
---  `sub_date` TIMESTAMP NOT NULL,
---  `sub_share` DECIMAL(13,2) NULL,
---  `sub_card_number` VARCHAR(20) NOT NULL,
---  PRIMARY KEY (`fund_number`, `cer_number`, `sub_date`, `sub_card_number`));
+CREATE SCHEMA `fund` ;
 
+CREATE TABLE `fund`.`invester` (
+  `user_type` VARCHAR(20) NOT NULL,
+  `user_name` VARCHAR(20) NOT NULL,
+  `cer_type` VARCHAR(20) NOT NULL,
+  `cer_number` VARCHAR(20) NOT NULL,
+  `risk_grade` INT NULL,
+  PRIMARY KEY (`cer_number`));
 
--- CREATE TABLE `test1`.`investor_holdings` (
---  `fund_number` VARCHAR(20) NOT NULL,
---  `cer_number` VARCHAR(20) NOT NULL,
---  `total_share` DECIMAL(13,2) NULL,
---  `card_number` VARCHAR(20) NOT NULL,
---  PRIMARY KEY (`fund_number`, `cer_number`, `card_number`));
+CREATE TABLE `fund`.`bank_card` (
+  `bank_name` VARCHAR(20) NOT NULL,
+  `card_number` VARCHAR(20) NOT NULL,
+  `cer_number` VARCHAR(20) NOT NULL,
+  `balance` DECIMAL(13,2) NULL,
+  PRIMARY KEY (`cer_number`, `card_number`));
+
+CREATE TABLE `fund`.`card_statement` (
+  `card_number` VARCHAR(20) NOT NULL,
+  `fund_number` VARCHAR(20) NOT NULL,
+  `sta_balance` DECIMAL(13,2) NULL,
+  `state_amount` DECIMAL(13,2) NOT NULL,
+  `state_date` TIMESTAMP NOT NULL,
+  PRIMARY KEY (`fund_number`, `card_number`, `state_date`));
+
+CREATE TABLE `fund`.`fund_product` (
+  `fund_number` VARCHAR(20) NOT NULL,
+  `fund_name` VARCHAR(20) NOT NULL,
+  `fund_type` VARCHAR(20) NOT NULL,
+  `fund_risk` INT NULL,
+  PRIMARY KEY (`fund_number`));
+
+CREATE TABLE `fund`.`fund_product` (
+  `fund_number` VARCHAR(20) NOT NULL,
+  `fund_value` DECIMAL(13,2) NOT NULL,
+  `fund_date` TIMESTAMP NOT NULL,
+  PRIMARY KEY (`fund_number`, `fund_date`));
+
+CREATE TABLE `test1`.`subscription` (
+  `sub_state` VARCHAR(20) NULL DEFAULT '待确认',
+  `fund_number` VARCHAR(20) NOT NULL,
+  `cer_number` VARCHAR(20) NOT NULL,
+  `sub_amount` DECIMAL(13,2) NOT NULL,
+  `sub_date` TIMESTAMP NOT NULL,
+  `sub_share` DECIMAL(13,2) NULL,
+  `sub_card_number` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`fund_number`, `cer_number`, `sub_date`, `sub_card_number`));
+
+CREATE TABLE `fund`.`redemption` (
+  `red_state` VARCHAR(20) NOT NULL DEFAULT '待确认',
+  `fund_number` VARCHAR(20) NOT NULL,
+  `cer_number` VARCHAR(20) NOT NULL,
+  `red_amount` DECIMAL(13,2) NULL,
+  `red_date` TIMESTAMP NOT NULL,
+  `red_share` DECIMAL(13) NOT NULL,
+  `red_card_number` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`fund_number`, `cer_number`, `red_date`, `red_card_number`));
+
+CREATE TABLE `test1`.`investor_holdings` (
+  `fund_number` VARCHAR(20) NOT NULL,
+  `cer_number` VARCHAR(20) NOT NULL,
+  `total_share` DECIMAL(13,2) NULL,
+  `card_number` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`fund_number`, `cer_number`, `card_number`));
 
 
 -- 投资者
