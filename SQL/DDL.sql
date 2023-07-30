@@ -30,13 +30,13 @@ CREATE TABLE `fund`.`fund_product` (
   `fund_risk` INT NULL,
   PRIMARY KEY (`fund_number`));
 
-CREATE TABLE `fund`.`fund_product` (
+CREATE TABLE `fund`.`daily_value` (
   `fund_number` VARCHAR(20) NOT NULL,
   `fund_value` DECIMAL(13,2) NOT NULL,
   `fund_date` TIMESTAMP NOT NULL,
   PRIMARY KEY (`fund_number`, `fund_date`));
 
-CREATE TABLE `test1`.`subscription` (
+CREATE TABLE `fund`.`subscription` (
   `sub_state` VARCHAR(20) NULL DEFAULT '待确认',
   `fund_number` VARCHAR(20) NOT NULL,
   `cer_number` VARCHAR(20) NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE `fund`.`redemption` (
   `red_card_number` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`fund_number`, `cer_number`, `red_date`, `red_card_number`));
 
-CREATE TABLE `test1`.`investor_holdings` (
+CREATE TABLE `fund`.`investor_holdings` (
   `fund_number` VARCHAR(20) NOT NULL,
   `cer_number` VARCHAR(20) NOT NULL,
   `total_share` DECIMAL(13,2) NULL,
