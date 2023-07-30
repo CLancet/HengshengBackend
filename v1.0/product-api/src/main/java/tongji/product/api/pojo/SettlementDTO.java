@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class SettlementDTO {
     // ptr     %3 : 今天
@@ -13,7 +14,6 @@ public class SettlementDTO {
     private int ptr;
 
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date[] dates;
 
     public SettlementDTO(){
@@ -23,71 +23,12 @@ public class SettlementDTO {
         long miliSec = dates[0].getTime();
         long inOneDay = miliSec % (86400 * 1000);
         miliSec -= inOneDay;
+        miliSec -= 8 * 60 * 60 * 1000;
         dates[0].setTime(miliSec);
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(dates[0]);
+        dates[1] = new Date(miliSec - 2 * 86400 * 1000);
+        dates[2] = new Date(miliSec - 86400 * 1000);
 
-        // 昨天
-        while(true){
-            calendar.add(Calendar.DATE, -1);
-            int w = calendar.get(Calendar.DAY_OF_WEEK) - 1;
-            if(w < 0){
-                w = 0;
-            }
-            if(w>0 && w<6){
-                break;
-            }
-        }
-        dates[2]=calendar.getTime();
-
-        // 前天
-        while(true){
-            calendar.add(Calendar.DATE, -1);
-            int w = calendar.get(Calendar.DAY_OF_WEEK) - 1;
-            if(w < 0){
-                w = 0;
-            }
-            if(w>0 && w<6){
-                break;
-            }
-        }
-        dates[1]=calendar.getTime();
-    }
-
-    public SettlementDTO(Date nowDate){
-        ptr = 0;
-        dates = new Date[3];
-        dates[0] = nowDate;
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(dates[0]);
-
-        // 昨天
-        while(true) {
-            calendar.add(Calendar.DATE, -1);
-            int w = calendar.get(Calendar.DAY_OF_WEEK) - 1;
-            if(w < 0){
-                w = 0;
-            }
-            if(w>0 && w<6){
-                break;
-            }
-        }
-        dates[2]=calendar.getTime();
-
-        // 前天
-        while(true){
-            calendar.add(Calendar.DATE, -1);
-            int w = calendar.get(Calendar.DAY_OF_WEEK) - 1;
-            if(w < 0){
-                w = 0;
-            }
-            if(w>0 && w<6){
-                break;
-            }
-        }
-        dates[1]=calendar.getTime();
     }
 
     public void moveToNextDay(){

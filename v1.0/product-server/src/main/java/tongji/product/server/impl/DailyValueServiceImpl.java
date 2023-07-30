@@ -90,6 +90,9 @@ public class DailyValueServiceImpl implements DailyValueService {
             Date formattedLastDate = dateFormat.parse(lastDateString);
             Date formattedCurDate = dateFormat.parse(curDateString);
 
+            System.out.println(currentDate);
+            System.out.println(lastDate);
+
             List<ProductDTO> products = productMapper.getAllProduct();
             for(ProductDTO product :products){
                 DailyValueDTO dailyValue = new DailyValueDTO();
