@@ -14,6 +14,10 @@ public class SettlementDTO {
         ptr = 0;
         dates = new Date[3];
         dates[0] = new Date();
+        long miliSec = dates[0].getTime();
+        long inOneDay = miliSec % (86400 * 1000);
+        miliSec -= inOneDay;
+        dates[0].setTime(miliSec);
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dates[0]);
