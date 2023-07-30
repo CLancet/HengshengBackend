@@ -28,22 +28,22 @@ public class SettlementController {
 
     @RequestMapping(value = "/getTime", method = RequestMethod.GET)
     Date getNowDate() {
-        Date nowDate = settlementDTO.getNowDate();
-        nowDate.setTime(nowDate.getTime() + 8 * 60 * 60 * 1000);
+        Date nowDate = new Date();
+        nowDate.setTime(settlementDTO.getNowDate().getTime() + 8 * 60 * 60 * 1000);
         return nowDate;
     }
 
     @RequestMapping(value = "/getYesterday", method = RequestMethod.GET)
     Date getYesterday(){
-        Date nowDate = settlementDTO.getPreDate();
-        nowDate.setTime(nowDate.getTime() + 8 * 60 * 60 * 1000);
+        Date nowDate = new Date();
+        nowDate.setTime(settlementDTO.getPreDate().getTime() + 8 * 60 * 60 * 1000);
         return nowDate;
     }
 
     @RequestMapping(value = "/getPreYesterday", method = RequestMethod.GET)
     Date getPreYesterday(){
-        Date nowDate = settlementDTO.getTheDayBeforePreDate();
-        nowDate.setTime(nowDate.getTime() + 8 * 60 * 60 * 1000);
+        Date nowDate = new Date();
+        nowDate.setTime(settlementDTO.getTheDayBeforePreDate().getTime() + 8 * 60 * 60 * 1000);
         return nowDate;
     }
 
