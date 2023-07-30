@@ -2,6 +2,7 @@ package tongji.product.api;
 
 
 import com.hundsun.jrescloud.rpc.annotation.CloudFunction;
+import com.hundsun.jrescloud.rpc.annotation.CloudReference;
 import com.hundsun.jrescloud.rpc.annotation.CloudService;
 import tongji.product.api.pojo.InvesterDTO;
 
@@ -23,4 +24,10 @@ public interface InvesterService {
 
     @CloudFunction("0206")
     List<InvesterDTO> searchInvesterViaNumber(String keyWord);
+
+    @CloudFunction("0207")
+    String deleteInvester(String cerNumber);
+
+    @CloudFunction("0208")
+    String updateInvester(InvesterDTO invester);
 }

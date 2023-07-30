@@ -24,4 +24,11 @@ public interface InvesterMapper {
             "where cer_number like #{number}")
     List<InvesterDTO> searchInvesterViaNumber(@Param("number") String keyWord);
 
+    @Delete("delete from invester where cer_number = #{cerNumber}")
+    int deleteInvester(@Param("cerNumber")String cerNumber);
+
+    @Update("UPDATE invester SET user_type =#{invester.userType},user_name = #{invester.userName},cer_type = #{invester.cerType}," +
+            "cer_number = #{invester.cerNumber},,risk_grade = #{invester.riskGrade} WHERE cer_number =#{invester.cerNumber}")
+    int updateInvester(@Param("invester")InvesterDTO invester);
+
 }
