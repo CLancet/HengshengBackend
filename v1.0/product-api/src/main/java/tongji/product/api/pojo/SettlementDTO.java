@@ -32,7 +32,7 @@ public class SettlementDTO {
     }
 
     public void moveToNextDay(){
-        Calendar calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+8"));
         calendar.setTime(dates[ptr]);
         while(true){
             calendar.add(Calendar.DATE, 1);
@@ -49,9 +49,7 @@ public class SettlementDTO {
         dates[ptr] = calendar.getTime();
     }
 
-    public Date getNowDate(){
-        return dates[ptr];
-    }
+    public Date getNowDate(){ return dates[ptr]; }
 
     public Date getPreDate(){ return dates[(ptr+2)%3]; }
 
