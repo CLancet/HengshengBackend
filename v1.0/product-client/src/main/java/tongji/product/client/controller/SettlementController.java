@@ -28,17 +28,23 @@ public class SettlementController {
 
     @RequestMapping(value = "/getTime", method = RequestMethod.GET)
     Date getNowDate() {
-        return settlementDTO.getNowDate();
+        Date nowDate = settlementDTO.getNowDate();
+        nowDate.setTime(nowDate.getTime() + 8 * 60 * 60 * 1000);
+        return nowDate;
     }
 
     @RequestMapping(value = "/getYesterday", method = RequestMethod.GET)
     Date getYesterday(){
-        return settlementDTO.getPreDate();
+        Date nowDate = settlementDTO.getPreDate();
+        nowDate.setTime(nowDate.getTime() + 8 * 60 * 60 * 1000);
+        return nowDate;
     }
 
     @RequestMapping(value = "/getPreYesterday", method = RequestMethod.GET)
     Date getPreYesterday(){
-        return settlementDTO.getTheDayBeforePreDate();
+        Date nowDate = settlementDTO.getTheDayBeforePreDate();
+        nowDate.setTime(nowDate.getTime() + 8 * 60 * 60 * 1000);
+        return nowDate;
     }
 
     @RequestMapping(value = "/updateDailyValue",method = RequestMethod.GET)
