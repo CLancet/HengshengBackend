@@ -144,6 +144,29 @@ fund_number 基金编号 11111<br>
     }
 ]
 ```
+8. 根据日期获取日净值 方法：**GET**<br>
+fund_Date 查询日期 2023-07-28<br>
+示例;
+```
+127.0.0.1:9091/getDailyValueByDate?fund_date=2023-07-28
+```
+返回类型：List < DailyValueDTO><br>
+返回内容：该日期的所有日净值信息<br>
+返回示例：
+```
+[
+    {
+        "fundNumber": "22222",
+        "fundValue": 1.0,
+        "fundDate": "2021-01-01"
+    },
+    {
+        "fundNumber": "22222",
+        "fundValue": 1.2,
+        "fundDate": "2021-01-02"
+    }
+]
+```
 
 ### 银行卡
 8. 获取某用户所有银行卡 方法: **GET**<br>

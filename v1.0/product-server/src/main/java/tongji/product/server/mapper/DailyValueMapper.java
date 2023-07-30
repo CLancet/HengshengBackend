@@ -21,4 +21,7 @@ public interface DailyValueMapper {
 
     @Select("SELECT fund_number as fundNumber,fund_value as fundValue, fund_date as fundDate FROM daily_value WHERE fund_number = #{fundNumber} and fund_date=#{fundDate}")
     DailyValueDTO getOneDailyValue(@Param("fundNumber")String fundNumber, @Param("fundDate") Date fundDate);
+
+    @Select("SELECT fund_number as fundNumber,fund_value as fundValue, fund_date as fundDate FROM daily_value WHERE fund_date=#{fundDate}")
+    List<DailyValueDTO>getDailyValueByDate(@Param("fundDate")Date fundDate);
 }

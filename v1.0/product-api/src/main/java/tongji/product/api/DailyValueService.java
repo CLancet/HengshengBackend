@@ -4,6 +4,7 @@ package tongji.product.api;
 import com.hundsun.jrescloud.rpc.annotation.CloudComponent;
 import com.hundsun.jrescloud.rpc.annotation.CloudFunction;
 import com.hundsun.jrescloud.rpc.annotation.CloudService;
+import tongji.product.api.pojo.DailyValueChanges;
 import tongji.product.api.pojo.DailyValueDTO;
 import tongji.product.api.pojo.ProductDTO;
 
@@ -30,5 +31,8 @@ public interface DailyValueService {
 
     @CloudFunction("05013")
     String updateAllDailyValue(Date curentDate,Date lastDate);
+
+    @CloudFunction("05014")
+    List<DailyValueDTO>getDailyValueByDate(Date date);
 
 }
