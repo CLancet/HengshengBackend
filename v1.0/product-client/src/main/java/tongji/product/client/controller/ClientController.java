@@ -116,7 +116,26 @@ public class ClientController {
         return investerService.getAllInvester();
     }
 
+    @RequestMapping(path =  "deleteInvester",method = RequestMethod.DELETE)
+    public String deleteInvester(@RequestParam(value = "cer_number")String cerNumber){
+        return investerService.deleteInvester(cerNumber);
+    }
 
+    @RequestMapping(value = "/modifyInvester", method = RequestMethod.PATCH)
+    public String modifyProduct(@RequestParam(value = "user_type") String userType,
+                                @RequestParam(value = "user_name") String userName,
+                                @RequestParam(value = "cer_type") String cerType,
+                                @RequestParam(value = "cer_number" )String cerNumber,
+                                @RequestParam(value = "risk_grade")int riskGrade){
+        InvesterDTO invester = new InvesterDTO();
+        invester.setRiskGrade(riskGrade);
+        invester.setCerType(cerType);
+        invester.setUserName(userName);
+        invester.setUserType(userType);
+        invester.setCerNumber(cerNumber);
+        return investerService.updateInvester(invester);
+
+    }
 
 
 

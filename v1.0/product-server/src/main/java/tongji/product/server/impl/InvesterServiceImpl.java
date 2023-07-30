@@ -43,4 +43,20 @@ public class InvesterServiceImpl implements InvesterService {
         String key = '%' + keyWord + '%';
         return investerMapper.searchInvesterViaNumber(key);
     }
+
+    public String deleteInvester(String cerNumber){
+        investerMapper.deleteInvester(cerNumber);
+        return "删除成功";
+    }
+
+    public String updateInvester(InvesterDTO invester){
+        InvesterDTO existInvester = investerMapper.getInvester(invester.getCerNumber());
+        if(null == existInvester){
+            return "不存在该用户";
+        }
+        else{
+            investerMapper.updateInvester(invester);
+            return "更新成功";
+        }
+    }
 }
