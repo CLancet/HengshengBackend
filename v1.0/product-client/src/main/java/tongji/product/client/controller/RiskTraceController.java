@@ -10,6 +10,7 @@ import tongji.product.api.pojo.RiskTraceDTO;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@CrossOrigin(origins = "http://localhost:8000")
 @RestController
 public class RiskTraceController {
     @CloudReference

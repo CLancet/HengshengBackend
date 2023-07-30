@@ -85,16 +85,16 @@ public class ProductController {
         dailyValue.setFundDate(fundDate);
         return dailyValueService.createDailyValue(dailyValue);
     }
-    @RequestMapping(path = "/updateDailyValue", method = RequestMethod.GET)
-    public String updateDailyValue(@RequestParam(value = "fund_number") String fundNumber,
-                                   @RequestParam(value = "fund_value") float fundValue,
-                                   @RequestParam(value = "fund_date") Date fundDate){
-        DailyValueDTO dailyValue = new DailyValueDTO();
-        dailyValue.setFundNumber(fundNumber);
-        dailyValue.setFundValue(fundValue);
-        dailyValue.setFundDate(fundDate);
-        return dailyValueService.updateDailyValue(dailyValue);
-    }
+//    @RequestMapping(path = "/updateDailyValue", method = RequestMethod.GET)
+//    public String updateDailyValue(@RequestParam(value = "fund_number") String fundNumber,
+//                                   @RequestParam(value = "fund_value") float fundValue,
+//                                   @RequestParam(value = "fund_date") Date fundDate){
+//        DailyValueDTO dailyValue = new DailyValueDTO();
+//        dailyValue.setFundNumber(fundNumber);
+//        dailyValue.setFundValue(fundValue);
+//        dailyValue.setFundDate(fundDate);
+//        return dailyValueService.updateDailyValue(dailyValue);
+//    }
 
     @RequestMapping(path = "/getDailyValue", method = RequestMethod.GET)
     public List<DailyValueDTO> getDailyValue(@RequestParam(value = "fund_number") String fundNumber
@@ -103,7 +103,7 @@ public class ProductController {
     }
 
     @RequestMapping(path ="/getDailyValueByDate",method = RequestMethod.GET)
-    public List<DailyValueDTO> getDailyValueByDate(@RequestParam(value = "fund_date")java.util.Date fundDate){
+    public List<DailyValueChanges> getDailyValueByDate(@RequestParam(value = "fund_date")java.util.Date fundDate){
         return dailyValueService.getDailyValueByDate(fundDate);
     }
 

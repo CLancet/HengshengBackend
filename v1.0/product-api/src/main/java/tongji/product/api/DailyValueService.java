@@ -30,9 +30,9 @@ public interface DailyValueService {
     DailyValueDTO getOneDailyValue(String fundNumber, Date funDate);
 
     @CloudFunction("05013")
-    String updateAllDailyValue(Date curentDate,Date lastDate);
+    String updateAllDailyValue(Date currentDate,Date lastDate);
 
     @CloudFunction("05014")
-    List<DailyValueDTO>getDailyValueByDate(Date date);
+    List<DailyValueChanges>getDailyValueByDate(Date date);
 
 }

@@ -1,15 +1,13 @@
 package tongji.product.client.controller;
 
 import com.hundsun.jrescloud.rpc.annotation.CloudReference;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tongji.product.api.InvesterService;
 import tongji.product.api.pojo.InvesterDTO;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:8000")
 @RestController
 public class SearchInvesterController {
     @CloudReference
