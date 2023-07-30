@@ -116,13 +116,13 @@ public class ClientController {
         return investerService.getAllInvester();
     }
 
-    @RequestMapping(path =  "deleteInvester",method = RequestMethod.DELETE)
+    @RequestMapping(path =  "/deleteInvester",method = RequestMethod.DELETE)
     public String deleteInvester(@RequestParam(value = "cer_number")String cerNumber){
         return investerService.deleteInvester(cerNumber);
     }
 
     @RequestMapping(value = "/modifyInvester", method = RequestMethod.PATCH)
-    public String modifyProduct(@RequestParam(value = "user_type") String userType,
+    public String modifyInvester(@RequestParam(value = "user_type") String userType,
                                 @RequestParam(value = "user_name") String userName,
                                 @RequestParam(value = "cer_type") String cerType,
                                 @RequestParam(value = "cer_number" )String cerNumber,
