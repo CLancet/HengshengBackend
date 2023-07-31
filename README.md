@@ -1,4 +1,4 @@
-# HengshengBackend
+![image](https://github.com/CLancet/HengshengBackend/assets/115393551/6465f4d3-4ab3-470b-b6b4-902019b6a55b)# HengshengBackend
 ## 第三小组
 
 ### 端口9091, 以下为接口及其示例(以localhost为例)
@@ -33,7 +33,8 @@
 
 |字段名|字段含义|字段示例|
 |------|--------|--------|
-|fund_number  |基金编号  |11111|<br>
+|fund_number  |基金编号  |11111|
+
 示例：
 ```
 127.0.0.1:9091/getProduct?fund_number=11111
@@ -56,10 +57,11 @@
 
 |字段名|字段含义|字段示例|
 |------|--------|--------|
-|fund_number  |基金编号  |11111|<br>
-|fund_name    |基金名字  |暴富宝|<br>
-|fund_type    |基金类型  |股票基金|<br>
-|fund_risk    |基金风险  |2|<br>
+|fund_number  |基金编号  |11111|
+|fund_name    |基金名字  |暴富宝|
+|fund_type    |基金类型  |股票基金|
+|fund_risk    |基金风险  |2|
+
 示例：
 ```
 127.0.0.1:9091/modifyProduct?fund_number=11111&fund_name=暴富宝&fund_type=股票基金&fund_risk=2
@@ -75,7 +77,10 @@
    
 4. 删除产品 方法: **DELETE**
 
-fund_number  基金编号  11111<br>
+|字段名|字段含义|字段示例|
+|------|--------|--------|
+|fund_number  |基金编号  |11111|
+
 示例：
 ```
 127.0.0.1:9091/deleteProduct?fund_number=11111
@@ -114,9 +119,13 @@ fund_number  基金编号  11111<br>
 ```
 
 6. 创建日净值 方法: **POST**
-fund_number  基金编号  11111<br>
-fund_value   当日净值  1.22<br>
-fund_date    净值日期  2023-07-03<br>
+
+|字段名|字段含义|字段示例|
+|------|--------|--------|
+|fund_number  |基金编号  |11111|
+|fund_value   |当日净值  |1.22|
+|fund_date    |净值日期  |2023-07-03|
+
 示例: 
 ```
 127.0.0.1:9091/createDailyValue?fund_number=11111&fund_value=1.22
@@ -129,7 +138,11 @@ fund_date    净值日期  2023-07-03<br>
 ```
 
 7. 获取日净值 方法: **GET**<br>
-fund_number 基金编号 11111<br>
+
+|字段名|字段含义|字段示例|
+|------|--------|--------|
+|fund_number |基金编号 |11111|
+
 示例:
 ```
 127.0.0.1:9091/getDailyValue?fund_number=11111
@@ -151,8 +164,12 @@ fund_number 基金编号 11111<br>
     }
 ]
 ```
-8. 根据日期获取日净值 方法：**GET**<br>
-fund_Date 查询日期 2023-07-28<br>
+8. 根据日期获取日净值 方法：**GET**
+
+|字段名|字段含义|字段示例|
+|------|--------|--------|
+|fund_Date |查询日期 |2023-07-28|
+
 示例;
 ```
 127.0.0.1:9091/getDailyValueByDate?fund_date=2023-07-28
@@ -195,9 +212,12 @@ fund_Date 查询日期 2023-07-28<br>
 ```
 
 ### 银行卡
-10. 获取某用户所有银行卡 方法: **GET**<br>
+10. 获取某用户所有银行卡 方法: **GET**
 
-cer_number 客户证件号 310101xxxxyyyyzzzz<br>
+|字段名|字段含义|字段示例|
+|------|--------|--------|
+|cer_number |客户证件号 |310101xxxxyyyyzzzz|
+
 示例: 
 ```
 127.0.0.1:9091/getBankCard/all?cer_number=310101xxxxyyyyzzzz
@@ -229,8 +249,11 @@ cer_number 客户证件号 310101xxxxyyyyzzzz<br>
 ```
 11. 获取一张银行卡 方法: **GET**<br>
 
-card_number 银行卡号<br>
-cer_number 证件号<br>
+|字段名|字段含义|字段示例|
+|------|--------|--------|
+|card_number |银行卡号|8888 8888 8888 8888|
+|cer_number |证件号|310101xxxxyyyyzzzz|
+
 示例:
 ```
 127.0.0.1:9091/getBankCard/one?cer_number=310101xxxxyyyyzzzz&card_number=8888 8888 8888 8888
@@ -249,10 +272,13 @@ cer_number 证件号<br>
 
 12.  添加银行卡 方法: **POST**
 
-card_number 卡号<br>
-cer_number 证件号<br>
-bank_name 银行名字<br>
-balance 余额<br>
+|字段名|字段含义|字段示例|
+|------|--------|--------|
+|card_number |卡号| 8888 8888 8888 8888|
+|cer_number |证件号|310101xxxxyyyyzzzz|
+|bank_name |银行名字|中国银行|
+|balance |余额|100.00|
+
 示例: 
 ```
 127.0.0.1:9091/addBankCard/cer_number=310101xxxxyyyyzzzz&card_number=8888 8888 8888 8888&bank_name=ICBC&balance=100.0
@@ -266,8 +292,10 @@ balance 余额<br>
 
 13. 删除银行卡 方法: **DELETE**
 
-card_number 卡号<br>
-cer_number 证件号<br>
+|字段名|字段含义|字段示例|
+|------|--------|--------|
+|card_number |卡号|8888 8888 8888 8888|
+|cer_number |证件号|310101xxxxyyyyzzzz|
 示例: 
 ```
 127.0.0.1:9091/addBankCard/cer_number=310101xxxxyyyyzzzz&card_number=8888 8888 8888 8888&bank_name=ICBC&balance=100.0
@@ -280,10 +308,15 @@ cer_number 证件号<br>
 ```
 
 14.  更改银行卡 方法: **PATCH**
-card_number 卡号<br>
-cer_number 证件号<br>
-bank_name 银行名字<br>
-balance 余额<br>
+
+
+|字段名|字段含义|字段示例|
+|------|--------|--------|
+|card_number |卡号|8888 8888 8888 8888|
+|cer_number |证件号|310101xxxxyyyyzzzz|
+|bank_name |银行名字|中国银行|
+|balance |余额|100.0|
+
 示例: 
 ```
 127.0.0.1:9091/addBankCard/cer_number=310101xxxxyyyyzzzz&card_number=8888 8888 8888 8888&bank_name=ICBC&balance=100.0
@@ -297,11 +330,16 @@ balance 余额<br>
 
 ### 银行卡流水
 
-15.  创建流水信息 方法: **POST**<br>
-card_number 卡号<br>
-state_amount 交易金额<br>
-fund_number 基金代码<br>
-sta_balance 交易后卡内余额<br>
+15.  创建流水信息 方法: **POST**
+
+
+|字段名|字段含义|字段示例|
+|------|--------|--------|
+|card_number |卡号|8888 8888 8888 8888|
+|state_amount |交易金额|12.34|
+|fund_number |基金代码|11111|
+|sta_balance |交易后卡内余额|0.1|
+
 示例:
 ```
 127.0.0.1:9091/createCardStatement?card_number=8888 8888 8888 8888&state_amount=12.34&fund_number=11111&sta_balance=1000.22
@@ -313,9 +351,13 @@ sta_balance 交易后卡内余额<br>
 8888 8888 8888 8888
 ```
 
-16.  以基金为关键字获取流水 方法: **GET**<br>
-card_number 卡号<br>
-fund_number 基金代码<br>
+16.  以基金为关键字获取流水 方法: **GET**
+
+|字段名|字段含义|字段示例|
+|------|--------|--------|
+|card_number |卡号|8888 8888 8888 8888|
+|fund_number |基金代码|11111|
+
 示例:
 ```
 127.0.0.1:9091/getCardStatement/fund?card_number=8888 8888 8888 8888&fund_number=11111
@@ -344,13 +386,16 @@ fund_number 基金代码<br>
 
 ### 投资者相关
 
-17.   创建投资者 方法: **POST**<br>
+17.   创建投资者 方法: **POST**
 
-user_type 用户类型<br>
-user_name 用户姓名<br>
-cer_type 证件类型<br>
-cer_number 证件号码<br>
-risk_grade 风险等级<br>
+|字段名|字段含义|字段示例|
+|------|--------|--------|
+|user_type 用户类型|个人|
+user_name 用户姓名|小明|
+cer_type 证件类型|身份证|
+cer_number 证件号码|310101xxxxyyyyzzzz|
+risk_grade 风险等级|3|
+
 示例:
 ```
 127.0.0.1:9091/createInvester?user_type=个人&user_name=小明&cer_type=身份证&risk_grade=3
@@ -362,9 +407,12 @@ risk_grade 风险等级<br>
 310101xxxxyyyyzzzz
 ```
 
-18.   获取某个投资者 方法: **GET**<br>
+18.   获取某个投资者 方法: **GET**
 
-cer_number 证件号<br>
+|字段名|字段含义|字段示例|
+|------|--------|--------|
+|cer_number |证件号|310101xxxxyyyyzzzz|
+
 示例:
 ```
 127.0.0.1:9091/getInvester?cer_number=310101xxxxyyyyzzzz
@@ -417,8 +465,11 @@ cer_number 证件号<br>
 ]
 ```
 
-20. 删除投资者 方法：DELETE
-cer_number 投资者证件号 530122222xxx<br>
+20. 删除投资者 方法：DELETE、
+
+|字段名|字段含义|字段示例|
+|------|--------|--------|
+|cer_number |投资者证件号 |530122222xxx|
 
 示例：
 ```
@@ -434,11 +485,13 @@ cer_number 投资者证件号 530122222xxx<br>
 
 21. 更新投资者 方法：PATCH
 
-userType 用户类型 个人<br>
-user_name 用户名称 同济张<br>
-cer_type 证件类型 身份证<br>
-cer_number 证件号码 11211<br>
-risk_grade 风险等级 5<br>
+|字段名|字段含义|字段示例|
+|------|--------|--------|
+|userType |用户类型 |个人|
+|user_name |用户名称 |同济张|
+|cer_type |证件类型 |身份证|
+|cer_number |证件号码 |11211|
+|risk_grade |风险等级 |5|
 
 示例：
 ```
