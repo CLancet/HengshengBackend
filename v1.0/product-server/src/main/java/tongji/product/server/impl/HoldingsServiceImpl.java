@@ -61,5 +61,9 @@ public class HoldingsServiceImpl implements HoldingsService {
         return "OK";
     }
 
+    public List<HoldingsDTO> getHoldingsByCerNumber(String cerNumber){
+        return holdingsMapper.getHoldings(cerNumber);
+    }
+
 
 }

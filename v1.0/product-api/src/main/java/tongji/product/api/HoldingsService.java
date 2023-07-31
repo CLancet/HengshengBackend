@@ -6,6 +6,8 @@ import com.hundsun.jrescloud.rpc.annotation.CloudService;
 import org.apache.kafka.common.protocol.types.Field;
 import tongji.product.api.pojo.HoldingsDTO;
 
+import java.util.List;
+
 @CloudService(validationNull = true, validation = true)
 public interface HoldingsService {
     @CloudFunction("060101")
@@ -22,4 +24,7 @@ public interface HoldingsService {
 
     @CloudFunction("060501")
     String checkHoldings(HoldingsDTO holdings);
+
+    @CloudFunction ("060502")
+    List<HoldingsDTO> getHoldingsByCerNumber(String cerNumber);
 }

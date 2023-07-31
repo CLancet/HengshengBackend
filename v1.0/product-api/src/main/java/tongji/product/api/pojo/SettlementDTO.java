@@ -26,9 +26,52 @@ public class SettlementDTO {
         miliSec -= 8 * 60 * 60 * 1000;
         dates[0].setTime(miliSec);
 
-        dates[1] = new Date(miliSec - 2 * 86400 * 1000);
-        dates[2] = new Date(miliSec - 86400 * 1000);
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+8"));
 
+
+        calendar.setTime(dates[0]);
+        while(true){
+            int w = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+            if(w < 0){
+                w = 0;
+            }
+            if(w>0 && w<6){
+                break;
+            }
+            calendar.add(Calendar.DATE, -1);
+        }
+        dates[0] = calendar.getTime();
+        miliSec = dates[0].getTime();
+
+
+        dates[1] = new Date(miliSec - 2 * 86400 * 1000);
+        calendar.setTime(dates[1]);
+        while(true){
+            int w = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+            if(w < 0){
+                w = 0;
+            }
+            if(w>0 && w<6){
+                break;
+            }
+            calendar.add(Calendar.DATE, -1);
+        }
+        dates[1] = calendar.getTime();
+
+
+        dates[2] = new Date(miliSec - 86400 * 1000);
+        calendar.setTime(dates[2]);
+        while(true){
+            int w = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+            if(w < 0){
+                w = 0;
+            }
+            if(w>0 && w<6){
+                break;
+            }
+            calendar.add(Calendar.DATE, -1);
+        }
+        dates[2] = calendar.getTime();
     }
 
     public void moveToNextDay(){
