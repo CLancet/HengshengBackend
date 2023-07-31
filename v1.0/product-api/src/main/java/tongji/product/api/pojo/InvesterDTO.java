@@ -11,6 +11,7 @@ public class InvesterDTO {
     @NotBlank
     private String cerNumber;//证件号码
     private int riskGrade;
+    private boolean available;
 
     public String getUserType() {
         return userType;
@@ -52,5 +53,7 @@ public class InvesterDTO {
         this.riskGrade = riskGrade;
     }
 
+    public boolean getAvailable() { return available; }
+    public void setAvailable(boolean available) { this.available = available; }
 
 }

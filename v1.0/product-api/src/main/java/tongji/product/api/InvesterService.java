@@ -30,4 +30,7 @@ public interface InvesterService {
 
     @CloudFunction("0208")
     String updateInvester(InvesterDTO invester);
+
+    @CloudFunction("0209")
+    InvesterDTO getAvailableInvester(String cerNumber);
 }

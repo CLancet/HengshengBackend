@@ -102,6 +102,7 @@ public class ClientController {
         invester.setUserName(userName);
         invester.setCerType(cerType);
         invester.setRiskGrade(riskGrade);
+        invester.setAvailable(true);
         return investerService.createInvester(invester);
 
     }
