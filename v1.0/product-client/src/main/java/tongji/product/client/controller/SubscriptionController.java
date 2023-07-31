@@ -46,7 +46,7 @@ public class SubscriptionController {
 
     @RequestMapping(path = "/getInvesterAndCards",method = RequestMethod.GET)
     public ResponseEntity<InvesterAndBankCardDTO> getInvesterAndCards(@RequestParam(value = "cer_number")String cerNumber){
-        InvesterDTO invester=investerService.getInvester(cerNumber);
+        InvesterDTO invester=investerService.getAvailableInvester(cerNumber);
         List<BankCardDTO> bankCards= bankCardService.getBankCard(cerNumber);
         InvesterAndBankCardDTO investerAndBankCard = new InvesterAndBankCardDTO();
         investerAndBankCard.setInvester(invester);

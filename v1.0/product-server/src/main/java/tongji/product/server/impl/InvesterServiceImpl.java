@@ -20,6 +20,10 @@ public class InvesterServiceImpl implements InvesterService {
         if(null==existInvester){
             investerMapper.createInvester(invester);
             return invester.getCerNumber();
+        } else if(!existInvester.getAvailable()){
+            existInvester.setAvailable(true);
+            investerMapper.updateInvester(invester);
+            return invester.getCerNumber();
         }
 
         throw new IllegalArgumentException("已存在相同的证件号的投资者");
@@ -58,5 +62,9 @@ public class InvesterServiceImpl implements InvesterService {
             investerMapper.updateInvester(invester);
             return "更新成功";
         }
+    }
+
+    public InvesterDTO getAvailableInvester(String cerNumber) {
+        return investerMapper.getAvailableInvester(cerNumber);
     }
 }
