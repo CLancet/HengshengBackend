@@ -8,10 +8,12 @@
 
 1. 创建基金产品, 方法: **POST**
 
-fund_number  基金编号  11111<br>
-fund_name    基金名字  暴富宝<br>
-fund_type    基金类型  股票基金<br>
-fund_risk    基金风险  2<br>
+|字段名|字段含义|字段示例|
+|------|--------|--------|
+|fund_number | 基金编号|  11111|<br>
+|fund_name  |  基金名字|  暴富宝|<br>
+|fund_type |   基金类型|  股票基金|<br>
+|fund_risk|    基金风险|  2|<br>
 
 示例：
 ```
@@ -29,7 +31,9 @@ fund_risk    基金风险  2<br>
    
 2. 获取基金产品（单个）方法: **GET**
 
-fund_number  基金编号  11111<br>
+|字段名|字段含义|字段示例|
+|------|--------|--------|
+|fund_number  |基金编号  |11111|<br>
 示例：
 ```
 127.0.0.1:9091/getProduct?fund_number=11111
@@ -50,10 +54,12 @@ fund_number  基金编号  11111<br>
       
 3. 修改产品 方法: **PATCH**
 
-fund_number  基金编号  11111<br>
-fund_name    基金名字  暴富宝<br>
-fund_type    基金类型  股票基金<br>
-fund_risk    基金风险  2<br>
+|字段名|字段含义|字段示例|
+|------|--------|--------|
+|fund_number  |基金编号  |11111|<br>
+|fund_name    |基金名字  |暴富宝|<br>
+|fund_type    |基金类型  |股票基金|<br>
+|fund_risk    |基金风险  |2|<br>
 示例：
 ```
 127.0.0.1:9091/modifyProduct?fund_number=11111&fund_name=暴富宝&fund_type=股票基金&fund_risk=2
