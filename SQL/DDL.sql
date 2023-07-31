@@ -73,9 +73,9 @@ INSERT INTO `fund`.`invester` (`user_type`, `user_name`, `cer_type`, `cer_number
 
 INSERT INTO `fund`.`invester` (`user_type`, `user_name`, `cer_type`, `cer_number`, `risk_grade`) VALUES ('个人', '周洁仑',   '身份证', '530124198802241346', '3');
 INSERT INTO `fund`.`invester` (`user_type`, `user_name`, `cer_type`, `cer_number`, `risk_grade`) VALUES ('个人', '黄肖明',     '身份证', '12425620152658421x', '1');
---INSERT INTO `fund`.`invester` (`user_type`, `user_name`, `cer_type`, `cer_number`, `risk_grade`) VALUES ('个人', '同济葛蕾', '身份证', '310101666666666666', '2');
---INSERT INTO `fund`.`invester` (`user_type`, `user_name`, `cer_type`, `cer_number`, `risk_grade`) VALUES ('个人', '小明',   '身份证', '310101hhhhjjjjkkkk', '5');
---INSERT INTO `fund`.`invester` (`user_type`, `user_name`, `cer_type`, `cer_number`, `risk_grade`) VALUES ('公司', '同济大学', '公司证件', 'abcde', '4');
+-- INSERT INTO `fund`.`invester` (`user_type`, `user_name`, `cer_type`, `cer_number`, `risk_grade`) VALUES ('个人', '同济葛蕾', '身份证', '310101666666666666', '2');
+-- INSERT INTO `fund`.`invester` (`user_type`, `user_name`, `cer_type`, `cer_number`, `risk_grade`) VALUES ('个人', '小明',   '身份证', '310101hhhhjjjjkkkk', '5');
+-- INSERT INTO `fund`.`invester` (`user_type`, `user_name`, `cer_type`, `cer_number`, `risk_grade`) VALUES ('公司', '同济大学', '公司证件', 'abcde', '4');
 
 -- 银行卡
 INSERT INTO `fund`.`bank_card` (`bank_name`, `card_number`, `cer_number`, `balance`) VALUES ('BC', '1111 1111 1111 1111', '310101ppppqqqqrrrr', '100.0');

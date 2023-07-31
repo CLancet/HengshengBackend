@@ -1,20 +1,4 @@
 
-/*drop table `fund`.`fund_product`;
-drop table `fund`.`daily_value`;
-
-
-CREATE TABLE `fund`.`fund_product` (
-  `fund_number` VARCHAR(20) NOT NULL,
-  `fund_name` VARCHAR(20) NOT NULL,
-  `fund_type` VARCHAR(20) NOT NULL,
-  `fund_risk` INT NULL,
-  PRIMARY KEY (`fund_number`));
-
-CREATE TABLE `fund`.`daily_value` (
-  `fund_number` VARCHAR(20) NOT NULL,
-  `fund_value` DECIMAL(13,2) NOT NULL,
-  `fund_date` TIMESTAMP NOT NULL,
-  PRIMARY KEY (`fund_number`, `fund_date`));*/
 
 INSERT INTO `fund`.`fund_product` (`fund_number`, `fund_name`, `fund_type`, `fund_risk`) VALUES ('005827', '易方达蓝筹精选', '股票基金', '3');
 INSERT INTO `fund`.`fund_product` (`fund_number`, `fund_name`, `fund_type`, `fund_risk`) VALUES ('000083', '汇添富消费行业', '股票基金', '4');
@@ -60,7 +44,7 @@ INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALU
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('005827', '2023-07-28', '1.23');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('005827', '2023-07-29', '1.24');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('005827', '2023-07-30', '1.22');
---INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('005827', '2023-07-31', '1.25');
+INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('005827', '2023-07-31', '1.25');
 
 -- Fund 000083
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('000083', '2023-07-01', '1.23');
@@ -93,9 +77,9 @@ INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALU
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('000083', '2023-07-28', '1.23');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('000083', '2023-07-29', '1.24');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('000083', '2023-07-30', '1.22');
---INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('000083', '2023-07-31', '1.25');
+INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('000083', '2023-07-31', '1.25');
 
---fund 161005
+-- fund 161005
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('161005', '2023-07-01', '1.28');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('161005', '2023-07-02', '1.29');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('161005', '2023-07-03', '1.30');
@@ -126,7 +110,7 @@ INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALU
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('161005', '2023-07-28', '1.32');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('161005', '2023-07-29', '1.30');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('161005', '2023-07-30', '1.28');
---INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('161005', '2023-07-31', '1.26');
+INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('161005', '2023-07-31', '1.26');
 
 
 -- Fund 163402
@@ -160,7 +144,7 @@ INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALU
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('163402', '2023-07-28', '1.08');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('163402', '2023-07-29', '1.07');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('163402', '2023-07-30', '1.06');
---INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('163402', '2023-07-31', '1.05');
+INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('163402', '2023-07-31', '1.05');
 
 -- Fund 163415
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('163415', '2023-07-01', '1.45');
@@ -193,7 +177,7 @@ INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALU
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('163415', '2023-07-28', '1.22');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('163415', '2023-07-29', '1.21');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('163415', '2023-07-30', '1.20');
---INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('163415', '2023-07-31', '1.19');
+INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('163415', '2023-07-31', '1.19');
 
 -- Fund 162605
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('162605', '2023-07-01', '1.55');
@@ -226,7 +210,7 @@ INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALU
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('162605', '2023-07-28', '1.32');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('162605', '2023-07-29', '1.31');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('162605', '2023-07-30', '1.30');
---INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('162605', '2023-07-31', '1.29');
+INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('162605', '2023-07-31', '1.29');
 
 -- Fund 270002
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('270002', '2023-07-01', '1.20');
@@ -259,7 +243,7 @@ INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALU
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('270002', '2023-07-28', '2.00');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('270002', '2023-07-29', '2.03');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('270002', '2023-07-30', '2.06');
---INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('270002', '2023-07-31', '2.09');
+INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('270002', '2023-07-31', '2.09');
 
 -- Fund 007119
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('007119', '2023-07-01', '1.70');
@@ -292,7 +276,7 @@ INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALU
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('007119', '2023-07-28', '1.45');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('007119', '2023-07-29', '1.50');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('007119', '2023-07-30', '1.60');
---INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('007119', '2023-07-31', '1.62');
+INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('007119', '2023-07-31', '1.62');
 
 -- Fund 005968
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('005968', '2023-07-01', '1.55');
@@ -325,7 +309,7 @@ INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALU
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('005968', '2023-07-28', '1.32');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('005968', '2023-07-29', '1.31');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('005968', '2023-07-30', '1.30');
---INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('005968', '2023-07-31', '1.29');
+INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('005968', '2023-07-31', '1.29');
 
 -- Fund 001938
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('001938', '2023-07-01', '1.23');
@@ -358,4 +342,4 @@ INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALU
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('001938', '2023-07-28', '1.23');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('001938', '2023-07-29', '1.24');
 INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('001938', '2023-07-30', '1.22');
---INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('001938', '2023-07-31', '1.25');
+INSERT INTO `fund`.`daily_value` (`fund_number`, `fund_date`, `fund_value`) VALUES ('001938', '2023-07-31', '1.25');
