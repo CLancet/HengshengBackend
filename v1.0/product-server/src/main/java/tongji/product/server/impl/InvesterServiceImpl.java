@@ -21,7 +21,6 @@ public class InvesterServiceImpl implements InvesterService {
             investerMapper.createInvester(invester);
             return invester.getCerNumber();
         } else if(!existInvester.getAvailable()){
-            existInvester.setAvailable(true);
             investerMapper.updateInvester(invester);
             return invester.getCerNumber();
         }
