@@ -1,4 +1,4 @@
-![image](https://github.com/CLancet/HengshengBackend/assets/115393551/6465f4d3-4ab3-470b-b6b4-902019b6a55b)# HengshengBackend
+HengshengBackend
 ## 第三小组
 
 ### 端口9091, 以下为接口及其示例(以localhost为例)
