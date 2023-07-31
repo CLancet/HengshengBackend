@@ -1,6 +1,7 @@
 package tongji.product.client.controller;
 
 
+import com.hundsun.jrescloud.rpc.annotation.CloudReference;
 import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.web.bind.annotation.*;
 import tongji.product.api.HoldingsService;
@@ -11,7 +12,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:8000")
 @RestController
 public class HoldingsController {
-    @Reference
+    @CloudReference
     HoldingsService holdingsService;
 
     @RequestMapping(value = "/getHoldingsByCerNumber",method = RequestMethod.GET)
