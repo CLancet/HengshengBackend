@@ -125,6 +125,7 @@ public class SettlementServiceImpl implements SettlementService {
                 float redAmount = redemption.calcRedAmount(fundValue);
                 redemption.setRedAmount(redAmount);
                 redemption.setRedState("已上账");
+                redemptionMapper.updateRedemption(redemption);
 
             } catch(Exception e) {
                 System.out.println(e.toString());

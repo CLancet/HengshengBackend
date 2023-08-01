@@ -28,4 +28,8 @@ public interface RedemptionMapper {
     @Select("select red_state as redState,fund_number as fundNumber,cer_number as cerNumber,red_amount as redAmount," +
             "red_date as redDate,red_share as redShare,red_card_number as redCardNumber from redemption where red_state<>'已上账'")
     List<RedemptionDTO> getUnsettledRedemption();
+
+    @Update("update redemption set red_state = #{red.redState}, red_amount =#{red.redAmount}," +
+            "red_date =#{red.redDate},red_share =#{red.redShare} where cer_number=#{red.cerNumber}")
+    int updateRedemption(@Param("red") RedemptionDTO redemption);
 }
