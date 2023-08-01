@@ -18,8 +18,8 @@ public interface HoldingsMapper {
     @Delete("DELETE FROM investor_holdings WHERE total_share=0")
     int deleteHoldings();
 
-    @Select("SELECT fund_number AS fundNumber, cer_number AS cerNumber, total_share AS totalShare, card_number AS cardNumber FROM investor_holdings WHERE card_number = #{cardNumber} AND cer_number = #{cerNumber}")
-    HoldingsDTO getOneHoldings(@Param("cardNumber") String cardNumber, @Param("cerNumber") String cerNumber);
+    @Select("SELECT fund_number AS fundNumber, cer_number AS cerNumber, total_share AS totalShare, card_number AS cardNumber FROM investor_holdings WHERE card_number = #{cardNumber} AND fund_number = #{fundNumber}")
+    HoldingsDTO getOneHoldings(@Param("cardNumber") String cardNumber, @Param("fundNumber") String cerNumber);
 
     @Select("SELECT fund_number AS fundNumber, cer_number AS cerNumber, total_share AS totalShare, card_number AS cardNumber FROM investor_holdings " +
             "WHERE card_number = #{cardNumber} " +

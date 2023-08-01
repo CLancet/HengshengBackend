@@ -85,6 +85,7 @@ public class RedemptionController {
         /*redemption.setRedDate(redDate);*/
         redemption.setRedShare(redShare);
         redemption.setRedCardNumber(redCardNumber);
+        System.out.println(redemption.getFundNumber());
         return redemptionService.deleteRedemption(redemption);
     }
 

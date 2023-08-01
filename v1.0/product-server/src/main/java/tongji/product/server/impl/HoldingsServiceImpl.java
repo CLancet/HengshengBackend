@@ -29,7 +29,7 @@ public class HoldingsServiceImpl implements HoldingsService {
 
     public HoldingsDTO getInvestorHoldings(String fundNumber, String cerNumber, String cardNumber) {
         Assert.hasLength(fundNumber, "缺少查询的产品代码");
-        return holdingsMapper.getOneHoldings(cardNumber, cerNumber);
+        return holdingsMapper.getOneHoldings(cardNumber, fundNumber);
     }
 
     public int deleteInvestorHoldings() {
@@ -37,7 +37,7 @@ public class HoldingsServiceImpl implements HoldingsService {
     }
 
     public String updateInvestorHoldings(HoldingsDTO holdings) {
-        HoldingsDTO existingHoldings = holdingsMapper.getOneHoldings(holdings.getCardNumber(), holdings.getCerNumber());
+        HoldingsDTO existingHoldings = holdingsMapper.getOneHoldings(holdings.getCardNumber(), holdings.getFundNumber());
         if (existingHoldings == null) {
             holdingsMapper.createHoldings(holdings);//如果为空则增加这个持仓表
             return holdings.getFundNumber();
@@ -47,7 +47,7 @@ public class HoldingsServiceImpl implements HoldingsService {
     }
 
     public String checkHoldings(HoldingsDTO holdings){
-        HoldingsDTO existShare = holdingsMapper.getOneHoldings(holdings.getCardNumber(),holdings.getCerNumber());
+        HoldingsDTO existShare = holdingsMapper.getOneHoldings(holdings.getCardNumber(),holdings.getFundNumber());
         ProductDTO existProduct = productMapper.getProduct(holdings.getFundNumber());
         if(null == existShare){
             return "不存在对应银行卡持仓记录";
